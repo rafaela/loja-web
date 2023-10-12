@@ -1,0 +1,26 @@
+.example-container {
+    height: 100%;
+    margin: 10px;
+    background-color: var(--body);
+    
+}
+
+mat-sidenav{
+    background-color: var(--body)
+}
+
+.conteudo-principal{
+    height: 100%; 
+    
+}
+
+.drawer{
+    padding: 0 100px !important;
+}
+
+a{
+    color: var(--secundary);
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 500;
+}

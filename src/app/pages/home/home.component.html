@@ -1,0 +1,26 @@
+
+<mat-sidenav-container class="example-container" autosize>
+    <mat-sidenav #sidenav mode="side" opened="isExpanded">
+        <mat-nav-list>
+    
+            <mat-list-item  routerLink="" routerLinkActive="selected">
+                <mat-icon mat-list-icon>home </mat-icon>
+                <span *ngIf="isExpanded" class="menu-item" >Início</span>
+            </mat-list-item>
+    
+            <mat-list-item routerLink="produtos" routerLinkActive="selected">
+                <mat-icon mat-list-icon>shopping_bag</mat-icon>
+                <span *ngIf="isExpanded" class="menu-item">Produtos</span>
+            </mat-list-item>
+    
+        </mat-nav-list>
+    </mat-sidenav>
+  
+    <!-- Content - rendered Content for the current router path into the <router-outlet>, e.g. /dashboard or /info-->
+    <section class="conteudo-principal">
+        <router-outlet></router-outlet>
+    </section>
+
+</mat-sidenav-container>
+
+

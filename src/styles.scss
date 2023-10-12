@@ -1,1 +1,84 @@
-/* You can add global styles to this file, and also import other style files */
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$loja-web-primary: mat.define-palette(mat.$indigo-palette);
+$loja-web-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$loja-web-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$loja-web-theme: mat.define-light-theme((
+  color: (
+    primary: $loja-web-primary,
+    accent: $loja-web-accent,
+    warn: $loja-web-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($loja-web-theme);
+
+:root {
+    --primary: #ec0000;
+    --secundary: #ff3e3e;
+    --body: #FAFAFA;
+    --text-menu: #4b4b4b;
+    --text-body: #fff;
+    --title: #B71C1C;
+}
+
+html, body { height: 100%; background-color: var(--body)}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+mat-form-field{
+  width: 350px;
+  margin: 20px ;
+}
+
+mat-panel-title{
+  color: var(--title);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 65px;
+  margin-left: 21px;
+}
+
+mat-form-field{
+  background-color: var(--body) !important;
+}
+
+.botao-salvar{
+  background-color: var(--title) !important;
+  margin-right: 10px;
+  color: #fff !important;
+  box-shadow: 2px 2px 2px #BDBDBD;
+}
+
+.botao-cancelar{
+  background-color: #fff !important;
+  margin-right: 10px;
+  color: var(--title) !important;
+  box-shadow: 2px 2px 2px #BDBDBD;
+  border: 1px solid #BDBDBD;
+}
+
+.section-save{
+  text-align: center;
+  margin-top: 20px;
+}
