@@ -18,11 +18,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { LayoutModule } from '@angular/cdk/layout';
 
-import { CurrencyMaskModule } from "ng2-currency-mask";
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
 
 
 @NgModule({
@@ -31,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
     IndexComponent,
     ProductsEditComponent,
     ProductsComponent,
+    ProductsFilterComponent,
   ],
   imports: [
     CommonModule,
@@ -47,11 +48,10 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatGridListModule,
     LayoutModule,
-    CurrencyMaskModule,
     MatSelectModule,
     MatCheckboxModule,
     FormsModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,
@@ -61,7 +61,7 @@ import { MatButtonModule } from '@angular/material/button';
     IndexComponent,
     ProductsEditComponent,
     ProductsComponent,
-
+    ProductsFilterComponent,
   ]
 })
 export class PagesModule { }

@@ -1,0 +1,36 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Lista de Produtos
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
+            <mat-form-field floatLabel="always"   fxFlex="1 1 auto" appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input type="text" matInput
+                        placeholder="Informe o nome do produto" [(ngModel)]="model.Name">
+            </mat-form-field>
+
+            <mat-checkbox [(ngModel)]="model.FeaturedProduct" name="Produto em Destaque">Produto em Destaque</mat-checkbox>
+            <mat-checkbox [(ngModel)]="model.FeaturedProduct" name="Inativo">Inativo</mat-checkbox>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" class="flex"  >
+            <div class="btn-filter">
+                <button mat-flat-button class="botao-salvar btn-search" (click)="cancelar()">Pesquisar</button>
+                <button mat-flat-button class="botao-cancelar btn-search" style="margin-left: 0px;" (click)="limpar()">Limpar</button>
+            </div>
+            <div class="btn-filter-end">
+                <button mat-flat-button class="botao-salvar btn-insert" (click)="inserir()">Inserir</button>
+            </div>
+        </div>
+        
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+
+

@@ -12,6 +12,12 @@ import { PagesModule } from './pages/pages.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { NO_ERRORS_SCHEMA } from '@angular/compiler';
+import { ApiService } from './services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
+import { BlockUIModule } from 'ng-block-ui';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 
 
@@ -28,11 +34,16 @@ import { NO_ERRORS_SCHEMA } from '@angular/compiler';
     BrowserAnimationsModule,
     MatListModule,
     PagesModule,
-    MatIconModule
+    MatIconModule,
+    HttpClientModule,
+    //ToastrService,
+    BlockUIModule.forRoot(),
+    NgbModule
+    
   ],
-  
-  
   providers: [
+    ApiService
+
   ],
   bootstrap: [AppComponent]
 })

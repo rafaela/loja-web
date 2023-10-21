@@ -39,16 +39,19 @@ $loja-web-theme: mat.define-light-theme((
     --body: #FAFAFA;
     --text-menu: #4b4b4b;
     --text-body: #fff;
-    --title: #B71C1C;
+    //--title: #B71C1C;
+    --title: #F44336;
+    --line: #BDBDBD;
 }
 
-html, body { height: 100%; background-color: var(--body)}
+html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 mat-form-field{
   width: 350px;
   margin: 20px ;
+  
 }
 
 mat-panel-title{
@@ -59,9 +62,7 @@ mat-panel-title{
   margin-left: 21px;
 }
 
-mat-form-field{
-  background-color: var(--body) !important;
-}
+
 
 .botao-salvar{
   background-color: var(--title) !important;
@@ -81,4 +82,46 @@ mat-form-field{
 .section-save{
   text-align: center;
   margin-top: 20px;
+}
+
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+table, th, td, mat-paginator{
+  border: solid 1px #BDBDBD;
+}
+
+th{
+  color: var(--title);
+}
+
+.btn-edit{
+  color: var(--title);
+}
+
+.btn-delete{
+  color: var(--text-menu);
+}
+
+.btn-search{
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-insert{
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+
+.flex{
+  display: flex;
+}
+
+.btn-filter{
+  flex: 1 auto;
+}
+
+.btn-filter-end{
+  margin-right: 12px;
 }
