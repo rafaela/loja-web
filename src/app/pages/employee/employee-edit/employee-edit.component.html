@@ -1,0 +1,93 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Informações do funcionário
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form class="example-form">
+
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput [formControl]="nomeFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Informe o nome do funcionário" [(ngModel)]="model.name">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="nomeFormControl.hasError('required')">
+                        Forneça um nome
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>Telefone</mat-label>
+                    <input type="text" matInput [formControl]="phoneFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Informe o telefone do funcionário" [(ngModel)]="model.phone">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="phoneFormControl.hasError('required')">
+                        Forneça um nome
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>CPF</mat-label>
+                    <input type="email" matInput [formControl]="cpfFormControl" [errorStateMatcher]="matcher"
+                           placeholder="Forneça o CPF" [(ngModel)]="model.cpf">
+                    
+                    <mat-error *ngIf="cpfFormControl.hasError('required')">
+                      CPF é <strong>obrigatório</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>Data de Nascimento</mat-label>
+                    <input type="date" matInput [(ngModel)]="model.birthDate" name="date"
+                           placeholder="Data de nascimento">
+                </mat-form-field>
+
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
+                
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>Email</mat-label>
+                    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                           placeholder="Ex. pat@example.com" [(ngModel)]="model.email">
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                      Insira um email válido
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                      Email é <strong>obrigatório</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>Senha</mat-label>
+                    <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
+                           placeholder="Senha" [(ngModel)]="model.password">
+                    
+                    <mat-error *ngIf="passwordFormControl.hasError('required')">
+                      Senha é <strong>obrigatória</strong>
+                    </mat-error>
+                </mat-form-field>
+
+                
+                <mat-checkbox class="input-checkbox" [(ngModel)]="model.inactive" name="Categoria inativa">Inativa</mat-checkbox>
+                
+            </div>
+
+            <section class="section-save">
+                <div class="example-button-row">
+                  <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+                  <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+                </div>
+            </section>
+
+            
+        </form>
+
+    </mat-expansion-panel>
+
+
+</mat-accordion>

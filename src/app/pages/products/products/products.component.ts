@@ -4,6 +4,8 @@ import { Products } from './../../../models/Products';
 import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { DialogDeleteComponent } from 'src/app/components/dialog-delete/dialog-delete.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 
@@ -24,14 +26,22 @@ export class ProductsComponent  implements OnInit{
 
   
 
-  constructor(private cdr: ChangeDetectorRef, private productsService: ApiService, private ui: UiService){
+  constructor(private cdr: ChangeDetectorRef, private api: ApiService, private ui: UiService,  public dialog: MatDialog){
 
     
   }
 
   ngOnInit() {
+    
+    this.buscaDados();
+    
+    /*this.dataSource = new MatTableDataSource (ELEMENT_DATA);*/
+    this.cdr.detectChanges();
+  }
+
+  buscaDados(){
     this.ui.block();
-    this.productsService.GetProducts().subscribe(data => {
+    this.api.getProducts().subscribe(data => {
       
       this.productsList = data.data;
 
@@ -52,19 +62,31 @@ export class ProductsComponent  implements OnInit{
           element.inactive = 'Não'
         }
       })
-
-      
       this.ui.unblock();
       console.log(this.productsList)
-
-      //item.DataCriacao = new Date(item.DAtaCriacao).toLocaleDataString('pt-br')
     })
-    
-    /*this.dataSource = new MatTableDataSource (ELEMENT_DATA);*/
-    this.cdr.detectChanges();
   }
 
-  /*ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-  }*/
+  delete(id, enterAnimationDuration, exitAnimationDuration){
+
+    const dialogRef = this.dialog.open(DialogDeleteComponent, {
+      width: '350px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
+
+    dialogRef.afterClosed().subscribe(data =>{
+      if(data){
+        this.api.deleteCategory(id).subscribe(data => {
+          if(data.sucess){
+            this.ui.sucess('', 'Categoria removida')
+            this.buscaDados();
+          }
+          else
+            this.ui.error('', data.message)
+        })
+      }
+    });
+
+  }
 }

@@ -2,3 +2,18 @@ https://www.npmjs.com/package/ng2-currency-mask
 
 https://codinglatte.com/posts/angular/angular-material-form-field-appearance/
 
+https://www.youtube.com/watch?v=VnJdZ_od0wY
+
+https://m2.material.io/design/color/the-color-system.html#tools-for-picking-colors
+
+https://www.youtube.com/watch?v=3RkmaC3HJtk
+
+https://www.youtube.com/watch?v=1X2AFupIerw
+
+https://fonts.google.com/icons
+
+https://www.devmedia.com.br/angular-filter-e-pipes/40798
+
+https://javascript.plainenglish.io/why-you-shouldnt-use-angular-pipes-with-inputs-8dc1d0e9039d
+
+https://balta.io/blog/login-logout-protecao-de-rotas-envio-de-tokens-com-angular

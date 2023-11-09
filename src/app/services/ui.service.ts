@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UiService {
 
@@ -23,7 +25,8 @@ export class UiService {
       return this._blockingMessage;
   }
 
-  constructor() {
+  constructor(private toastr: ToastrService) {
+    toastr.toastrConfig.timeOut = 5000;
   }
 
 
@@ -36,7 +39,6 @@ export class UiService {
 
         this.blockUI.start(this.blockingMessage);
     }
-
     setTimeout(() => {
 
         if (!this._stopped) {
@@ -44,7 +46,7 @@ export class UiService {
             this._isBlocking = true;
         }
 
-    }, 250);
+    }, 2500);
   }
 
   public unblock() {
@@ -53,6 +55,14 @@ export class UiService {
       this._isBlocking = false;
       this._stopped = true;
     }
+  }
+
+  public sucess(title, message){
+    this.toastr.success(title, message, {timeOut: 3000})
+  }
+
+  public error(title, message){
+    this.toastr.error(title, message, {timeOut: 3000})
   }
 
 }

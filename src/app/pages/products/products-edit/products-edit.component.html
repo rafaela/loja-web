@@ -13,55 +13,87 @@
                 <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
                     <mat-label>Nome</mat-label>
                     <input type="text" matInput [formControl]="nomeFormControl" [errorStateMatcher]="matcher"
-                            placeholder="Informe o nome do produto" [(ngModel)]="model.Name">
+                            placeholder="Informe o nome do produto" [(ngModel)]="model.name">
                     <mat-hint></mat-hint>
                     <mat-error *ngIf="nomeFormControl.hasError('required')">
                         Forneça um nome para o produto
                     </mat-error>
                 </mat-form-field>
                 
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>Quantidade em estoque</mat-label>
+                    <input type="number" matInput [formControl]="amountFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Informe a quantidade do produto" [(ngModel)]="model.amount">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="amountFormControl.hasError('required')">
+                        Forneça a quantidade de produto
+                    </mat-error>
+                </mat-form-field>
                 
-                <!--<mat-form-field floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
                     <mat-label>Valor</mat-label>
-                    <input  matInput currencyMask [options]="{align: 'left', prefix: 'R$'}"  [formControl]="valorFormControl" [errorStateMatcher]="matcher"
-                            placeholder="Informe o valor do produto" [(ngModel)]="model.Value">
+                    <input  matInput currencyMask  [formControl]="valorFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Informe o valor do produto" [(ngModel)]="model.value">
                     <mat-hint></mat-hint>
                     <mat-error *ngIf="valorFormControl.hasError('required')">
                         Forneça um valor para o produto
                     </mat-error>
-                </mat-form-field>-->
+                </mat-form-field>
+            </div>
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
+                
+              <!--  <select [ngModel]="model.category">
+                    <option *ngFor="let category of categoriesList" [value]="category.id">{{category.name}}</option>
+                </select>-->
 
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                <mat-form-field appearance="outline">
                     <mat-label>Categoria</mat-label>
-                    <mat-select [(ngModel)]="model.Category" [ngModelOptions]="{standalone: true}">
-                      <mat-option *ngFor="let food of foods" [value]="food.value">
-                        {{food.viewValue}}
-                      </mat-option>
+                    <mat-select [(ngModel)]="model.categoryID" name="category">
+                      <mat-option *ngFor="let category of categoriesList" [value]="category.id">{{category.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
 
-                <mat-checkbox [(ngModel)]="model.FeaturedProduct" name="Produto em Destaque">Produto em Destaque</mat-checkbox>
+                <mat-checkbox [(ngModel)]="model.featuredProduct" name="Produto em Destaque">Produto em Destaque</mat-checkbox>
 
             </div>
             
             <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
                 <mat-form-field appearance="outline" style="width: 60%;" class="example-full-width" >
                     <mat-label>Descrição</mat-label>
-                    <textarea  matInput placeholder="Forneça a Descrição" ng-model="model.Description"></textarea>
+                    <textarea  matInput placeholder="Forneça a Descrição" (ngModel)="model.description"></textarea>
                 </mat-form-field>
             </div>
-
-
-            <section class="section-save">
-                <div class="example-button-row">
-                  <button mat-flat-button class="botao-salvar">Salvar</button>
-                  <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
-                </div>
-            </section>
-
-            
         </form>
+    </mat-expansion-panel>
 
+    <mat-expansion-panel>
+
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Galeria de fotos
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" style="margin-left: 20px">
+            <button mat-button mat-raised-button color="primary" (click)="imagem.click()">
+                Selecione as imagens
+            </button>
+            <input type="file" #imagem multiple name="files" (change)="fileImage($event)" style="display: none;" />
+        </div>
+
+        <div *ngFor="let image of model.photos; let indexC = index" class="imageList">
+            <img [src]="image.urlImage">
+            <button mat-icon-button (click)="model.photos.splice(indexC, 1)" >
+                <mat-icon title="Remover imagem" color="warn">delete</mat-icon>
+            </button>
+        </div>
+
+        <section class="section-save">
+            <div class="example-button-row">
+              <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+              <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+            </div>
+        </section>
     </mat-expansion-panel>
 
 

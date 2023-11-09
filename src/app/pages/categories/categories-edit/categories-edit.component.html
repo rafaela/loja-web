@@ -1,0 +1,41 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Informações da categoria
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form class="example-form">
+
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
+                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" matInput [formControl]="nomeFormControl" [errorStateMatcher]="matcher"
+                            placeholder="Informe o nome da categoria" [(ngModel)]="model.name">
+                    <mat-hint></mat-hint>
+                    <mat-error *ngIf="nomeFormControl.hasError('required')">
+                        Forneça um nome para a categoria
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-checkbox class="input-checkbox" [(ngModel)]="model.inactive" name="Categoria inativa">Inativa</mat-checkbox>
+                
+            </div>
+
+
+            <section class="section-save">
+                <div class="example-button-row">
+                  <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+                  <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+                </div>
+            </section>
+
+            
+        </form>
+
+    </mat-expansion-panel>
+
+
+</mat-accordion>

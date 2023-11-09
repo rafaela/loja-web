@@ -7,11 +7,26 @@
                 <mat-icon mat-list-icon>home </mat-icon>
                 <span *ngIf="isExpanded" class="menu-item" >Início</span>
             </mat-list-item>
+
+            <mat-list-item routerLink="categorias" routerLinkActive="selected">
+                <mat-icon mat-list-icon>
+                    <span class="material-symbols-outlined">category</span>
+                </mat-icon>
+                <span *ngIf="isExpanded" class="menu-item">Categorias</span>
+            </mat-list-item>
     
             <mat-list-item routerLink="produtos" routerLinkActive="selected">
                 <mat-icon mat-list-icon>shopping_bag</mat-icon>
                 <span *ngIf="isExpanded" class="menu-item">Produtos</span>
             </mat-list-item>
+
+            <mat-list-item routerLink="funcionarios" routerLinkActive="selected">
+                <mat-icon mat-list-icon>person_apron</mat-icon>
+                <span *ngIf="isExpanded" class="menu-item">Funcionários</span>
+            </mat-list-item>
+
+
+            
     
         </mat-nav-list>
     </mat-sidenav>
