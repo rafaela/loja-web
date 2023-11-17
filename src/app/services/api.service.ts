@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Products } from '../models/Products';
 import { Response } from '../models/Response';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,26 @@ export class ApiService {
   private apiUrl = '';
   private log: boolean = false;
 
-  constructor(private http: HttpClient) {
+  result: any;
+
+  constructor(private http: HttpClient, private router: Router) {
     var url = window.location;
     this.apiUrl = `${environment.ApiUrl}`
    }
+
+  async login(login){
+    this.result = await this.http.post(`${this.apiUrl}/login`, login).toPromise();
+    if(this.result && this.result.sucess){
+      window.localStorage.setItem('token', this.result.token);
+      return true;
+    }
+    return false;
+  }
+
+  logout(){
+    window.localStorage.clear();
+    this.router.navigate(['login']);
+  }
 
   //CRUD DE CATEGORIAS
   /*getCategoriesNameInactive(category) : Observable<any>{
@@ -47,7 +64,7 @@ export class ApiService {
   }
 
   createProduct(product) :  Observable<any>{
-    return this.http.post(this.apiUrl + '/produtos', product);
+    return this.http.post(this.apiUrl + '/produtos/0', product);
   }
 
   updateProduct(id, category) :  Observable<any>{

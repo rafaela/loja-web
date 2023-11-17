@@ -77,9 +77,9 @@ export class ProductsComponent  implements OnInit{
 
     dialogRef.afterClosed().subscribe(data =>{
       if(data){
-        this.api.deleteCategory(id).subscribe(data => {
+        this.api.deleteProduct(id).subscribe(data => {
           if(data.sucess){
-            this.ui.sucess('', 'Categoria removida')
+            this.ui.sucess('', 'Produto removido')
             this.buscaDados();
           }
           else

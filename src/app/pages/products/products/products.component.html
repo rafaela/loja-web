@@ -13,9 +13,9 @@
                   <span class="material-symbols-outlined btn-edit">edit</span>
                 </mat-icon>
               </a>
-              <a>
+              <a (click)="delete(element.id, '1ms', '1ms');$event.stopPropagation()">
                 <mat-icon>
-                  <span class="material-symbols-outlined btn-delete">delete</span>
+                  <span class="material-symbols-outlined btn-delete" >delete</span>
                 </mat-icon>
               </a>
           </td>

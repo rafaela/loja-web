@@ -17,3 +17,12 @@ https://www.devmedia.com.br/angular-filter-e-pipes/40798
 https://javascript.plainenglish.io/why-you-shouldnt-use-angular-pipes-with-inputs-8dc1d0e9039d
 
 https://balta.io/blog/login-logout-protecao-de-rotas-envio-de-tokens-com-angular
+
+## Criaçao da parte de login
+https://www.youtube.com/watch?v=RQB4Jwkc-c0
+
+## autenticacao na parte do servidor
+https://marcoswoc.net/autenticacao-e-autorizacao-jwt-em-uma-api-net-6-0/
+https://www.youtube.com/watch?v=k1O3z7Gqvfc
+https://www.youtube.com/watch?v=gwiDN4ao37w
+https://www.youtube.com/watch?v=-eGSRK7z8-w

@@ -6,7 +6,6 @@ import { CommonModule, NgIf } from '@angular/common';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ProductsComponent } from './products/products/products.component';
 import { HomeComponent } from './home/home.component';
-import { AppRoutingPagesModule } from './app-routing-pages.module';
 import { IndexComponent } from './index/index.component';
 import { ProductsEditComponent } from './products/products-edit/products-edit.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -30,6 +29,9 @@ import { EmployeeComponent } from './employee/employee/employee.component';
 import { EmployeeFilterComponent } from './employee/employee-filter/employee-filter.component';
 import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
 import { LoginComponent } from './login/login.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { HeaderComponent } from './header/header.component';
 
 
 @NgModule({
@@ -45,7 +47,10 @@ import { LoginComponent } from './login/login.component';
     EmployeeComponent,
     EmployeeFilterComponent,
     EmployeeEditComponent,
-    LoginComponent
+    LoginComponent,
+    AuthenticationComponent,
+    CreateAccountComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -54,7 +59,6 @@ import { LoginComponent } from './login/login.component';
     MatSidenavModule,
     MatListModule,
     RouterModule,
-    AppRoutingPagesModule,
     MatTableModule,
     MatPaginatorModule,
     MatInputModule,
@@ -83,7 +87,11 @@ import { LoginComponent } from './login/login.component';
     CategoriesEditComponent,
     EmployeeComponent,
     EmployeeFilterComponent,
-    EmployeeEditComponent
+    EmployeeEditComponent,
+    LoginComponent,
+    AuthenticationComponent,
+    CreateAccountComponent,
+    HeaderComponent
   ],
 })
 export class PagesModule { }

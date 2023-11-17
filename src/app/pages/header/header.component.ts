@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +9,9 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   isExpanded: boolean = true;
 
-  constructor(){}
+  constructor(private api: ApiService){}
+
+  sair(){
+    this.api.logout();
+  }
 }

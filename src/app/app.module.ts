@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './pages/header/header.component';
 import { PagesModule } from './pages/pages.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
@@ -23,6 +23,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { NumberFormatPipe } from './pipes/number-format.pipe';
 import { PhonePipe } from './pipes/phone.pipe';
 import { PhoneInputDirective } from './diretives/phone-input.directive';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
@@ -30,7 +31,6 @@ import { PhoneInputDirective } from './diretives/phone-input.directive';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     DialogDeleteComponent,
     NumberFormatPipe,
     PhonePipe,
@@ -61,7 +61,8 @@ import { PhoneInputDirective } from './diretives/phone-input.directive';
     MatButtonModule
   ],
   providers: [
-    ApiService
+    ApiService,
+    AuthGuard
 
   ],
   bootstrap: [AppComponent]
