@@ -13,7 +13,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $loja-web-primary: mat.define-palette(mat.$red-palette);
-$loja-web-accent: mat.define-palette(mat.$red-palette, 500);
+$loja-web-accent: mat.define-palette(mat.$red-palette, A700);
 
 // The warn palette is optional (defaults to red).
 $loja-web-warn: mat.define-palette(mat.$red-palette);
@@ -34,14 +34,14 @@ $loja-web-theme: mat.define-light-theme((
 @include mat.all-component-themes($loja-web-theme);
 
 :root {
-    --primary: #ec0000;
-    --secundary: #ff3e3e;
-    --body: #FAFAFA;
-    --text-menu: #4b4b4b;
-    --text-body: #fff;
-    //--title: #B71C1C;
-    --title: #F44336;
-    --line: #BDBDBD;
+  --primary: #ec0000;
+  --secundary: #ec0000;
+  --body: #FAFAFA;
+  --text-menu: #4b4b4b;
+  --text-body: #fff;
+  --title: #ec0000;
+  //--title: #F44336;
+  --line: #BDBDBD;
 }
 
 html, body { height: 100%; }
@@ -128,8 +128,29 @@ th{
   margin-right: 12px;
 }
 
-.mat-checkbox-ripple .mat-ripple-element,
-.mat-checkbox-checked.mat-accent .mat-checkbox-background {
-  background-color: greenyellow !important;
+
+.label-style{
+  display: flex;
+  float: left;
+}
+
+.label-title{
+  opacity: .73;
+  padding-top: 1px;
+}
+
+.input-style{
+  border-radius: 4px; 
+  border: 1px solid #ccc; 
+  width: 100%;
+  min-height: 1.58rem;
+}
+
+.div-checkbox-position{
+  margin-top: 2rem;
+}
+
+.checkbox-position {
+  transform: translateY(22px);
 }
 

@@ -32,6 +32,10 @@ import { LoginComponent } from './login/login.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { HeaderComponent } from './header/header.component';
+import { FreightComponent } from './freight/freight.component';
+import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 @NgModule({
@@ -50,7 +54,8 @@ import { HeaderComponent } from './header/header.component';
     LoginComponent,
     AuthenticationComponent,
     CreateAccountComponent,
-    HeaderComponent
+    HeaderComponent,
+    FreightComponent,
   ],
   imports: [
     CommonModule,
@@ -71,6 +76,10 @@ import { HeaderComponent } from './header/header.component';
     FormsModule,
     MatButtonModule,
     ReactiveFormsModule,
+    NgxMaskDirective,
+    NgxMaskPipe,
+    MatNativeDateModule,
+    MatDatepickerModule
    
   ],
   schemas: [

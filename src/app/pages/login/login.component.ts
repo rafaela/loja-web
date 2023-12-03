@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit{
 
   login = {
     email: '',
-    password: ''
+    passwordHash: ''
   }
 
   constructor(private api: ApiService, private router: Router, private ui: UiService){}
@@ -25,8 +25,6 @@ export class LoginComponent implements OnInit{
     try{
       const result = await this.api.login(this.login);
 
-      console.log(`Login efetuado: ${result}`);
-
       if(result){
         this.router.navigate(['']);
       }else{
@@ -35,7 +33,7 @@ export class LoginComponent implements OnInit{
 
       
     }catch(error){
-      console.log(error)
+      this.ui.error(error, 'Login')
     }
 
   }

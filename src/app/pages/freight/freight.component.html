@@ -1,0 +1,60 @@
+
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle (opened)="panelOpenState = true"
+    (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Informações do Frete
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                
+            <div class="col-lg-5">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Valor do KM
+                    </label>
+                </div>
+
+                <div class="">
+                    <input class="input-style" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                    prefix="R$ " type="text" [dropSpecialCharacters]="true" [(ngModel)]='model.valueKm' name="valueKm" type="text">
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Valor Mínimo frete grátis
+                    </label>
+                </div>
+
+                <div class="">
+                    <input class="input-style" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                    prefix="R$ " type="text" [dropSpecialCharacters]="true" [(ngModel)]='model.valuePriceFreeShipping' name="valueKm" type="text">
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Quantidade dias entrega
+                    </label>
+                </div>
+
+                <div class="">
+                    <input class="input-style" [(ngModel)]='model.timeDeliveryDays' name="valueKm" type="number">
+                </div>
+            </div>
+        </div>
+            
+    </mat-expansion-panel>
+
+    <section class="section-save">
+        <div class="example-button-row">
+          <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+          <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+        </div>
+    </section>
+</mat-accordion>

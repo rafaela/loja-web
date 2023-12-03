@@ -1,10 +1,9 @@
+import { NgxMaskDirective, NgxMaskPipe, provideNgxMask } from 'ngx-mask';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { HeaderComponent } from './pages/header/header.component';
@@ -22,10 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { NumberFormatPipe } from './pipes/number-format.pipe';
 import { PhonePipe } from './pipes/phone.pipe';
-import { PhoneInputDirective } from './diretives/phone-input.directive';
 import { AuthGuard } from './guard/auth.guard';
-
-
 
 
 @NgModule({
@@ -34,7 +30,6 @@ import { AuthGuard } from './guard/auth.guard';
     DialogDeleteComponent,
     NumberFormatPipe,
     PhonePipe,
-    PhoneInputDirective,
   ],
   imports: [
     BrowserModule,
@@ -58,11 +53,14 @@ import { AuthGuard } from './guard/auth.guard';
       progressBar: true,
     }),
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    NgxMaskDirective, 
+    NgxMaskPipe,
   ],
   providers: [
     ApiService,
-    AuthGuard
+    AuthGuard,
+    provideNgxMask()
 
   ],
   bootstrap: [AppComponent]

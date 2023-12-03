@@ -79,6 +79,10 @@ export class ApiService {
     return this.http.get(this.apiUrl + '/produtos/' + id, id);
   }
 
+  deleteImage(id) :  Observable<any>{
+    return this.http.delete(this.apiUrl + '/imagem/' + id, id);
+  }
+
 
   ///CRUD EMPLOYEE
 
@@ -87,7 +91,6 @@ export class ApiService {
   }
 
   createEmployee(employee) :  Observable<any>{
-    console.log(employee)
     return this.http.post(this.apiUrl + '/funcionarios/0', employee);
   }
 
@@ -101,6 +104,20 @@ export class ApiService {
 
   getEMployeeByID(id) :  Observable<any>{
     return this.http.get(this.apiUrl + '/funcionarios/'+ id, id);
+  }
+
+  //Crud Frete
+
+  createFreigth(frete) :  Observable<any>{
+    return this.http.post(this.apiUrl + '/frete', frete);
+  }
+
+  updateFreigth(id, frete) :  Observable<any>{
+    return this.http.put(this.apiUrl + '/frete/'+ id , frete);
+  }
+
+  getFreigthByID(id) :  Observable<any>{
+    return this.http.get(this.apiUrl + '/frete/'+ id, id);
   }
 
 

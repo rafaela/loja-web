@@ -11,6 +11,7 @@ import { CategoriesComponent } from './pages/categories/categories/categories.co
 import { CategoriesEditComponent } from './pages/categories/categories-edit/categories-edit.component';
 import { EmployeeComponent } from './pages/employee/employee/employee.component';
 import { EmployeeEditComponent } from './pages/employee/employee-edit/employee-edit.component';
+import { FreightComponent } from './pages/freight/freight.component';
 
 const routes: Routes = [
   // lazy loaded dashboard module
@@ -21,7 +22,8 @@ const routes: Routes = [
     { path: 'categorias', component: CategoriesComponent },
     { path: 'categorias/:id', component: CategoriesEditComponent },
     { path: 'funcionarios', component: EmployeeComponent },
-    { path: 'funcionarios/:id', component: EmployeeEditComponent }],
+    { path: 'funcionarios/:id', component: EmployeeEditComponent },
+    { path: 'frete', component: FreightComponent }],
     canActivate: [AuthGuard]
   },
 

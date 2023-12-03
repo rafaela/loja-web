@@ -5,6 +5,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { UiService } from 'src/app/services/ui.service';
 import { Utils } from '../../common';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-employee-edit',
@@ -24,10 +29,12 @@ export class EmployeeEditComponent {
   cpfFormControl = new FormControl('', [Validators.required]);
   passwordFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
-  
+
   constructor(private router: Router, private api: ApiService, private ui: UiService, private activatedRoute: ActivatedRoute){
 
   }
+
+ 
 
   ngOnInit(){
     this.activatedRoute.params.subscribe((params: any) => {
@@ -45,12 +52,15 @@ export class EmployeeEditComponent {
   }
 
   salvar(){
-    console.log(this.model)
-    if(this.model.birthDate){
-      this.model.birthDate = Utils.dateDOTNET2JS(this.model.birthDate)
+    console.log(this.model.birthDate)
+    let login = {
+      email: this.model.email,
+      passwordHash: this.model.password
     }
 
-    console.log(this.model.birthDate)
+    this.model.login = login
+
+    
 
     if(this.id == 0){
       this.ui.block();

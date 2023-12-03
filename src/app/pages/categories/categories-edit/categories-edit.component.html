@@ -9,33 +9,74 @@
 
         <form class="example-form">
 
-            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
-                    <mat-label>Nome</mat-label>
-                    <input type="text" matInput [formControl]="nomeFormControl" [errorStateMatcher]="matcher"
-                            placeholder="Informe o nome da categoria" [(ngModel)]="model.name">
-                    <mat-hint></mat-hint>
-                    <mat-error *ngIf="nomeFormControl.hasError('required')">
-                        Forneça um nome para a categoria
-                    </mat-error>
-                </mat-form-field>
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Nome
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.name' name="descricao" type="text">
+                    </div>
+                </div>
 
-                <mat-checkbox class="input-checkbox" [(ngModel)]="model.inactive" name="Categoria inativa">Inativa</mat-checkbox>
+                <div >
+                    <mat-checkbox class="" color="primary" labelPosition="before"
+                        [(ngModel)]="model.inactive">Inativa</mat-checkbox>
+                </div>
                 
             </div>
 
-
-            <section class="section-save">
-                <div class="example-button-row">
-                  <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
-                  <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
-                </div>
-            </section>
-
-            
         </form>
 
     </mat-expansion-panel>
+
+    <mat-expansion-panel>
+
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Informações das subcategoria
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row" fxLayoutAlign="start center" *ngFor="let category of model.subcategories; let indexC = index" style="margin-left: 20px;">
+            <div  class="subcategorias">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Nome
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.name' name="descricao" type="text">
+                    </div>
+                </div>
+                <button mat-icon-button (click)="model.subcategories.splice(indexC, 1)" >
+                    <mat-icon title="Remover subcategoria" style="color: var(--primary)">delete</mat-icon>
+                </button>    
+                
+            </div>
+        </div>
+        
+
+        <div fxLayout="row" fxLayoutAlign="start center" style="margin-left: 10px;">
+            <button mat-icon-button (click)="newSubcategory()" >
+                <mat-icon style="color: var(--primary)">add_circle</mat-icon>
+            </button>
+            <span style="opacity: .54; cursor: pointer; " (click)="newSubcategory();">Adicionar Subcategoria</span>
+        </div>
+    </mat-expansion-panel>
+
+    <section class="section-save">
+        <div class="example-button-row">
+          <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+          <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+        </div>
+    </section>
+
 
 
 </mat-accordion>

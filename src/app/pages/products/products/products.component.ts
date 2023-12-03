@@ -63,7 +63,6 @@ export class ProductsComponent  implements OnInit{
         }
       })
       this.ui.unblock();
-      console.log(this.productsList)
     })
   }
 

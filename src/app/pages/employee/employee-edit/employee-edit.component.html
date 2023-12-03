@@ -9,83 +9,104 @@
 
         <form class="example-form">
 
-            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
-                    <mat-label>Nome</mat-label>
-                    <input type="text" matInput [formControl]="nomeFormControl" [errorStateMatcher]="matcher"
-                            placeholder="Informe o nome do funcionário" [(ngModel)]="model.name">
-                    <mat-hint></mat-hint>
-                    <mat-error *ngIf="nomeFormControl.hasError('required')">
-                        Forneça um nome
-                    </mat-error>
-                </mat-form-field>
 
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
-                    <mat-label>Telefone</mat-label>
-                    <input type="text" matInput [formControl]="phoneFormControl" [errorStateMatcher]="matcher"
-                            placeholder="Informe o telefone do funcionário" [(ngModel)]="model.phone">
-                    <mat-hint></mat-hint>
-                    <mat-error *ngIf="phoneFormControl.hasError('required')">
-                        Forneça um nome
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
-                    <mat-label>CPF</mat-label>
-                    <input type="email" matInput [formControl]="cpfFormControl" [errorStateMatcher]="matcher"
-                           placeholder="Forneça o CPF" [(ngModel)]="model.cpf">
-                    
-                    <mat-error *ngIf="cpfFormControl.hasError('required')">
-                      CPF é <strong>obrigatório</strong>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
-                    <mat-label>Data de Nascimento</mat-label>
-                    <input type="date" matInput [(ngModel)]="model.birthDate" name="date"
-                           placeholder="Data de nascimento">
-                </mat-form-field>
-
-            </div>
-
-            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
-                
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
-                    <mat-label>Email</mat-label>
-                    <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                           placeholder="Ex. pat@example.com" [(ngModel)]="model.email">
-                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                      Insira um email válido
-                    </mat-error>
-                    <mat-error *ngIf="emailFormControl.hasError('required')">
-                      Email é <strong>obrigatório</strong>
-                    </mat-error>
-                </mat-form-field>
-
-                <mat-form-field appearance="outline" floatLabel="always"  class="example-full-width" fxFlex="1 1 auto">
-                    <mat-label>Senha</mat-label>
-                    <input type="password" matInput [formControl]="passwordFormControl" [errorStateMatcher]="matcher"
-                           placeholder="Senha" [(ngModel)]="model.password">
-                    
-                    <mat-error *ngIf="passwordFormControl.hasError('required')">
-                      Senha é <strong>obrigatória</strong>
-                    </mat-error>
-                </mat-form-field>
-
-                
-                <mat-checkbox class="input-checkbox" [(ngModel)]="model.inactive" name="Categoria inativa">Inativa</mat-checkbox>
-                
-            </div>
-
-            <section class="section-save">
-                <div class="example-button-row">
-                  <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
-                  <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Nome
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.name' name="name" type="text">
+                    </div>
                 </div>
-            </section>
 
-            
-        </form>
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Telefone
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" mask="(00)00000-0000" [(ngModel)]='model.phone' name="phone" type="text">
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            CPF
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" mask="000.000.000-00" [(ngModel)]='model.cpf' name="cpf" type="text">
+                    </div>
+                </div>
+                
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Data Nascimento
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" mask="00/00/0000" [(ngModel)]='model.birthDate' name="date" type="text">
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            E-mail
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.email' name="email" type="text">
+                    </div>
+                </div>
+
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Senha
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" mask="000.000.000-00" [(ngModel)]='model.password' name="cpf" type="password">
+                    </div>
+                </div>
+                
+                <div >
+                    <mat-checkbox class="" color="primary" labelPosition="before"
+                        [(ngModel)]="model.inactive" name="senha">Funcionário Inativo</mat-checkbox>
+                </div>
+
+            </div>
+
+        </form>  
+
+           
+        <section class="section-save">
+            <div class="example-button-row">
+                <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+                <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+            </div>
+        </section>
 
     </mat-expansion-panel>
 

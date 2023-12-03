@@ -26,3 +26,10 @@ https://marcoswoc.net/autenticacao-e-autorizacao-jwt-em-uma-api-net-6-0/
 https://www.youtube.com/watch?v=k1O3z7Gqvfc
 https://www.youtube.com/watch?v=gwiDN4ao37w
 https://www.youtube.com/watch?v=-eGSRK7z8-w
+
+
+##formatar dados inputs
+https://stackblitz.com/edit/input-masks-directives?file=src%2Fapp%2Fapp.module.ts,src%2Fapp%2Fapp.component.ts
+
+
+https://www.npmjs.com/package/ngx-currency-mask

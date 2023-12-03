@@ -70,9 +70,24 @@ export class ProductsEditComponent implements OnInit{
       this.api.getProductByID(this.id).subscribe(data => {
         this.ui.unblock();
         this.model = data.data
+
       })
     }
 
+  }
+
+  removerImagem(image){
+    console.log(image.id)
+    this.ui.block();
+    this.api.deleteImage(image.id).subscribe(data => {
+      this.ui.unblock();
+      if(data.sucess){
+        this.ui.sucess('', 'Imagem removida')
+      }
+      else{
+        this.ui.error('', data.message)
+      }
+    })
   }
 
   fileImage(event: any): void {
@@ -99,8 +114,6 @@ export class ProductsEditComponent implements OnInit{
 
   dataImages(image){
       this.model.photos.push({
-        id: null,
-        productId: this.id,
         urlImage: image,
         inactive: false
       })
@@ -108,8 +121,6 @@ export class ProductsEditComponent implements OnInit{
 
 
   salvar(){
-    //TODO retirar
-    this.model.photos = null
     if(this.id == 0){
       this.ui.block();
       this.api.createProduct(this.model).subscribe(data => {

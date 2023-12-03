@@ -49,7 +49,6 @@ export class EmployeeComponent {
     else{*/
     this.api.getEmployees().subscribe(data => {
       this.employeesList = data.data;
-      console.log(this.employeesList)
       this.formataDados(this.employeesList)
       this.ui.unblock();
     })

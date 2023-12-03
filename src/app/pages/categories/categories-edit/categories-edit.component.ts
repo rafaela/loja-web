@@ -29,7 +29,9 @@ export class CategoriesEditComponent implements OnInit{
   panelOpenState = false;
   id;
 
-  public model: any = {}
+  public model: any = {
+    subcategories: []
+  }
 
   nomeFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
@@ -48,14 +50,25 @@ export class CategoriesEditComponent implements OnInit{
       this.api.getCategoryByID(this.id).subscribe(data => {
         this.ui.unblock();
         this.model = data.data
+        if(!this.model.subcategories){
+          this.model.subcategories = []
+        }
       })
     }
 
   }
 
+  newSubcategory(){
+      this.model.subcategories.push({
+        name: ''
+      })  
+
+}
+
   salvar(){
     if(this.id == 0){
       this.ui.block();
+      
       this.api.createCategory(this.model).subscribe(data => {
         this.ui.unblock();
         if(data.sucess){
