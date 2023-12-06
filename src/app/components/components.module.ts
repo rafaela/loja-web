@@ -5,11 +5,13 @@ import { HeaderComponent } from '../pages/header/header.component';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { LoadingComponent } from './loading/loading.component';
 
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

@@ -56,8 +56,20 @@
                     </label>
                 </div>
                 <select class="input-style" [(ngModel)]="model.categoryID"
-                    (ngModelChange)="buscaSubcategorias(model.category)">
+                    (ngModelChange)="buscaSubcategorias(model.categoryID)">
                     <option *ngFor="let category of categoriesList" [value]="category.id">{{category.name}}</option>
+                </select>
+
+            </div>
+
+            <div class="col-lg-3" *ngIf="subcategories">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Subcategorias
+                    </label>
+                </div>
+                <select class="input-style" multiple [(ngModel)]="subcategoriesproduct">
+                    <option *ngFor="let sub of subcategories" [value]="sub.id">{{sub.name}}</option>
                 </select>
 
             </div>

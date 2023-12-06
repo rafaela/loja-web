@@ -10,7 +10,7 @@
 
         <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
                 
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <div class="label-style">
                     <label class="pull-right label-title">
                         Valor do KM
@@ -23,7 +23,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-5">
+            <div class="col-lg-4">
                 <div class="label-style">
                     <label class="pull-right label-title">
                         Valor Mínimo frete grátis
@@ -36,7 +36,7 @@
                 </div>
             </div>
 
-            <div class="col-lg-2">
+            <div class="col-lg-3">
                 <div class="label-style">
                     <label class="pull-right label-title">
                         Quantidade dias entrega
@@ -49,6 +49,44 @@
             </div>
         </div>
             
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Cidades com frete grátis
+            </mat-panel-title>
+            <span>Informe apenas o CEP</span>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row" fxLayoutAlign="start center" *ngFor="let city of model.cities; let indexC = index" style="margin-left: 20px;">
+            <div  class="frete">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            CEP
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" mask="00000-000" [(ngModel)]='city.cep' name="descricao" type="text">
+                    </div>
+                </div>
+                <button mat-icon-button (click)="model.cities.splice(indexC, 1)" >
+                    <mat-icon title="Remover cidade" style="color: var(--primary)">delete</mat-icon>
+                </button>    
+                
+            </div>
+        </div>
+        
+
+        <div fxLayout="row" fxLayoutAlign="start center" style="margin-left: 10px;">
+            <button mat-icon-button (click)="newCity()" >
+                <mat-icon style="color: var(--primary)">add_circle</mat-icon>
+            </button>
+            <span style="opacity: .54; cursor: pointer; " (click)="newCity();">Adicionar Cidade</span>
+        </div>
     </mat-expansion-panel>
 
     <section class="section-save">

@@ -62,8 +62,7 @@ export class CategoriesEditComponent implements OnInit{
       this.model.subcategories.push({
         name: ''
       })  
-
-}
+  }
 
   salvar(){
     if(this.id == 0){

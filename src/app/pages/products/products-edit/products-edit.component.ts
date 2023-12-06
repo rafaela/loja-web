@@ -34,9 +34,16 @@ export class ProductsEditComponent implements OnInit{
       productId: null,
       urlImage: null,
       inactive: false
+    }],
+    subcategoriesProducts: [{
+      id: null,
+      subcategoryId: null,
+      productId: null,
     }]
   }
+  public subcategoriesproduct: any = [];
   public categoriesList;
+  public subcategories
   id;
   images: any = [];
 
@@ -70,6 +77,13 @@ export class ProductsEditComponent implements OnInit{
       this.api.getProductByID(this.id).subscribe(data => {
         this.ui.unblock();
         this.model = data.data
+        console.log(this.model)
+        this.buscaSubcategorias(this.model.categoryID)
+
+        for(let i = 0; i < this.model.subcategoriesProducts.length; i++){
+          this.subcategoriesproduct.push(this.model.subcategoriesProducts[i].subcategoryId);
+        }
+        
 
       })
     }
@@ -77,7 +91,6 @@ export class ProductsEditComponent implements OnInit{
   }
 
   removerImagem(image){
-    console.log(image.id)
     this.ui.block();
     this.api.deleteImage(image.id).subscribe(data => {
       this.ui.unblock();
@@ -112,6 +125,18 @@ export class ProductsEditComponent implements OnInit{
     }
   }
 
+  tratandoSubcategorias(){
+    if(this.subcategoriesproduct){
+      for(let i = 0; i < this.subcategoriesproduct.length; i++){
+        this.model.subcategoriesProducts.push({
+          id: null,
+          subcategoryId: this.subcategoriesproduct[i],
+          productId: this.id == 0 ? null : this.id,
+        })
+      }
+    }
+  }
+
   dataImages(image){
       this.model.photos.push({
         urlImage: image,
@@ -120,7 +145,26 @@ export class ProductsEditComponent implements OnInit{
   }
 
 
+  buscaSubcategorias(category){
+    console.log(category)
+    this.ui.block();
+    this.api.getSubcategoriesByID(category).subscribe( data => {
+      this.ui.unblock();
+      if(data.sucess){
+        this.subcategories = data.data;
+
+        console.log(this.subcategories)
+      }
+      else{
+        this.ui.error('', data.message)
+      }
+    })
+  }
+
+
   salvar(){
+    this.tratandoSubcategorias();
+    console.log(this.model)
     if(this.id == 0){
       this.ui.block();
       this.api.createProduct(this.model).subscribe(data => {
