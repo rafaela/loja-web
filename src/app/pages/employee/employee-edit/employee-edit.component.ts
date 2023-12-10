@@ -19,6 +19,7 @@ import * as moment from 'moment';
 export class EmployeeEditComponent {
 
   panelOpenState = false;
+  isEdit: boolean = false
   id;
 
   public model: any = {}
@@ -42,6 +43,7 @@ export class EmployeeEditComponent {
     })
 
     if(this.id != 0){
+      this.isEdit = true;
       this.ui.block();
       this.api.getEMployeeByID(this.id).subscribe(data => {
         this.ui.unblock();
@@ -52,13 +54,7 @@ export class EmployeeEditComponent {
   }
 
   salvar(){
-    console.log(this.model.birthDate)
-    let login = {
-      email: this.model.email,
-      passwordHash: this.model.password
-    }
-
-    this.model.login = login
+    
 
     
 

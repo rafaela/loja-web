@@ -14,7 +14,7 @@ import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ApiService } from './services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { BlockUIModule } from 'ng-block-ui';
+import { BlockUI, BlockUIComponent, BlockUIModule } from 'ng-block-ui';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -41,11 +41,6 @@ import { AuthGuard } from './guard/auth.guard';
     PagesModule,
     MatIconModule,
     HttpClientModule,
-    //ToastrService,
-    BlockUIModule.forRoot({
-      delayStart: 500,
-      delayStop: 500
-    }),
     NgbModule,
     ToastrModule.forRoot({
       timeOut: 13000, // 15 seconds
@@ -56,6 +51,7 @@ import { AuthGuard } from './guard/auth.guard';
     MatButtonModule,
     NgxMaskDirective, 
     NgxMaskPipe,
+    BlockUIModule
   ],
   providers: [
     ApiService,

@@ -11,7 +11,10 @@ export class CategoriesFilterComponent {
 
   filter: any;
 
-  public model = {}
+  public model = {
+    Name: '',
+    inactive: false
+  }
 
   constructor(private router: Router,){
      
@@ -22,7 +25,10 @@ export class CategoriesFilterComponent {
   }
 
   limpar(){
-    this.model = {}
+    this.model = {
+      Name: '',
+      inactive: false
+    }
   }
 
   pesquisar(){

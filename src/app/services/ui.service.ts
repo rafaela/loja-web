@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class UiService {
 
-  @BlockUI() blockUI: NgBlockUI | undefined;
+  @BlockUI() blockUI;
 
   private _isBlocking: boolean = false;
   private _stopped: boolean = false;
@@ -32,29 +32,14 @@ export class UiService {
 
   public block(message?: string) {
 
-    this._blockingMessage = message || 'Um momento...';
-    this._stopped = false;
+    this.blockUI.start("Carregando...");
 
-    if (!this._isBlocking && this.blockUI) {
-
-        this.blockUI.start(this.blockingMessage);
-    }
     setTimeout(() => {
-
-        if (!this._stopped) {
-
-            this._isBlocking = true;
-        }
-
-    }, 2500);
+    }, 1000);
   }
 
   public unblock() {
-    if (!this._isBlocking && this.blockUI) {
       this.blockUI.stop();
-      this._isBlocking = false;
-      this._stopped = true;
-    }
   }
 
   public sucess(title, message){

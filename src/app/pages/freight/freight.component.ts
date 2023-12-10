@@ -12,7 +12,9 @@ import {Location} from '@angular/common';
   styleUrls: ['./freight.component.scss']
 })
 export class FreightComponent {
-  public model: any = {}
+  public model: any = {
+    cities: []
+  }
   public categoriesList;
   isEdit = false;
   id = 0;
@@ -30,11 +32,20 @@ export class FreightComponent {
       if(data.data){
         this.model = data.data
         this.id = this.model.id;
-        console
+        if(!this.model.cities){
+          this.model.cities = []
+        }
       }
     })
 
   }
+
+  newCity(){
+    console.log("asdasdasd")
+    this.model.cities.push({
+      cep: ''
+    })  
+}
 
   salvar(){
     if(this.id == 0){
@@ -43,11 +54,11 @@ export class FreightComponent {
         this.ui.unblock();
         if(data.sucess){
           this.ui.sucess('', 'Frete cadastrado')
-          this.location.back();
+          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
         }
         else{
           this.ui.error('', data.message)
-          this.location.back();
+          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
         }
       })
     }
@@ -57,17 +68,17 @@ export class FreightComponent {
         this.ui.unblock();
         if(data.sucess){
           this.ui.sucess('', 'Frete atualizado')
-          this.location.back();
+          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
         }
         else{
           this.ui.error('', data.message)
-          this.location.back();
+          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
         }
       })
     }
   }
 
   cancelar(){
-    this.router.navigate([this.router.url.split('/')[1] + "/"]);
+    this.router.navigate([this.router.url.split('/')[0] + "/home"]);
   }
 }

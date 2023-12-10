@@ -1,24 +1,12 @@
 <p>
     <mat-toolbar class="toolbar" color="primary">
-
-        <button style="background-color: var(--primary); border: none;" mat-icon-button class="example-icon">
-            <mat-icon class="icon-sanduiche">menu</mat-icon>
-        </button>    
-        <a  routerLink="" routerLinkActive="selected">
+        <a routerLink="" routerLinkActive="selected">
             <img class="logo" src="../../../assets/images/logo.png" alt="Logo da Loja Top Móveis">
         </a>
-
-        <button style="background-color: var(--primary); border: none;" mat-icon-button class="example-icon" (click)="sair()">
+        <span class="example-spacer"></span>
+        <button style="background-color: var(--primary); border: none; margin-right: 10px; color: #fff;"  class="example-icon"
+            (click)="sair()">
             Sair
-        </button> 
-
-        <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-            <mat-icon>favorite</mat-icon>
         </button>
-      
-      
     </mat-toolbar>
 </p>
-
-
-  
