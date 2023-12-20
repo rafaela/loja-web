@@ -10,11 +10,11 @@ jobs:
           - uses: actions/checkout@v4
           - uses: actions/setup-node@v1
             with:
-              node-version: 10.16
+              node-version: 18.18.0
           - name: Install packages with NPM
             run: npm install
           - name: Build for production
-            run: npm run build -- --prod
+            run: npm run build --prod
 
           - name: FTP Deploy Locaweb
             uses: locaweb/ftp-deploy@1.0.0
