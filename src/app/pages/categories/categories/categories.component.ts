@@ -107,4 +107,8 @@ export class CategoriesComponent  implements OnInit{
   ngAfterViewInit() {
     this.categoriesList.paginator = this.paginator;
   }
+
+  rowSelected(row){
+    console.log(row)
+  }
 }

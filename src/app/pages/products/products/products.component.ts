@@ -88,4 +88,8 @@ export class ProductsComponent  implements OnInit{
     });
 
   }
+
+  rowSelected(row){
+    console.log(row)
+  }
 }

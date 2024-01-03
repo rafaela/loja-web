@@ -22,4 +22,8 @@ export class ProductsFilterComponent {
     this.router.navigate([this.router.url + '/0']);
   }
 
+  rowSelected(row){
+    console.log(row)
+  }
+
 }
