@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { LoadingService } from './../../services/loading.service';
+import { Component, OnInit, inject } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
   templateUrl: './loading.component.html',
   styleUrls: ['./loading.component.scss']
 })
-export class LoadingComponent {
+export class LoadingComponent  implements OnInit{
 
+  isLoading = false;
 
-  public block(message?: string) {
+  loadingService = inject(LoadingService)
 
-    alert("aaaaaaaaaaaaa")
+  ngOnInit(): void {
+    this.loadingService.getLoadingState().subscribe((isLoading) => this.isLoading = isLoading);
   }
+
 }

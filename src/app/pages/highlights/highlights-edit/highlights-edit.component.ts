@@ -1,37 +1,27 @@
-import { FormControl, Validators } from '@angular/forms';
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from '../../MyErrorStateMatcher';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
-  selector: 'app-employee-edit',
-  templateUrl: './employee-edit.component.html',
-  styleUrls: ['./employee-edit.component.scss']
+  selector: 'app-highlights-edit',
+  templateUrl: './highlights-edit.component.html',
+  styleUrls: ['./highlights-edit.component.scss']
 })
-export class EmployeeEditComponent {
-
+export class HighlightsEditComponent {
   panelOpenState = false;
-  isEdit: boolean = false
   id;
 
-  public model: any = {
-    Login: {}
-  }
+  public model: any = {}
 
   nomeFormControl = new FormControl('', [Validators.required]);
-  phoneFormControl = new FormControl('', [Validators.required, Validators.pattern(/\(\d{2}\) (\d )?\d{4}-\d{4}/)], );
-  emailFormControl = new FormControl('', [Validators.required, Validators.email]);
-  cpfFormControl = new FormControl('', [Validators.required]);
-  passwordFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
-
+  
   constructor(private router: Router, private api: ApiService, private ui: UiService, private activatedRoute: ActivatedRoute){
 
   }
-
- 
 
   ngOnInit(){
     this.activatedRoute.params.subscribe((params: any) => {
@@ -39,9 +29,8 @@ export class EmployeeEditComponent {
     })
 
     if(this.id != 0){
-      this.isEdit = true;
       this.ui.block();
-      this.api.getEMployeeByID(this.id).subscribe(data => {
+      this.api.getHighlightsByID(this.id).subscribe(data => {
         this.ui.unblock();
         this.model = data.data
       })
@@ -50,15 +39,13 @@ export class EmployeeEditComponent {
   }
 
   salvar(){
-    this.model.Login.email = this.model.email;
-    this.model.Login.passwordHash = this.model.passwordHash;
-
     if(this.id == 0){
       this.ui.block();
-      this.api.createEmployee(this.model).subscribe(data => {
+      
+      this.api.createHighlight(this.model).subscribe(data => {
         this.ui.unblock();
         if(data.sucess){
-          this.ui.sucess('', 'Funcionário cadastrado')
+          this.ui.sucess('', 'Imagem cadastrada')
           this.router.navigate([this.router.url.split('/')[1] + "/"]);
         }
         else{
@@ -68,10 +55,10 @@ export class EmployeeEditComponent {
     }
     else{
       this.ui.block();
-      this.api.updateEmployee(this.id, this.model).subscribe(data => {
+      this.api.updateHighlights(this.id, this.model).subscribe(data => {
         this.ui.unblock();
         if(data.sucess){
-          this.ui.sucess('', 'Funcionário atualizado')
+          this.ui.sucess('', 'Imagem atualizada')
           this.router.navigate([this.router.url.split('/')[1] + "/"]);
         }
         else{
@@ -82,8 +69,30 @@ export class EmployeeEditComponent {
     
   }
 
+  fileImage(event: any): void {
+    const selectFiles = event.srcElement.files;
+    if(selectFiles){
+      for(var i = 0, f; f = selectFiles[i]; i++){
+        if (f.type.match('image/')) {//verifica se os arquivos são imagens
+          var reader = new FileReader();
+          reader.onload = (e: any) => {
+            this.dataImages(e.target.result)
+          }
+          reader.readAsDataURL(f);
+        }
+        else{
+          this.ui.error('Arquivo inválido', 'Selecione apenas imagens')
+          return
+        } 
+      }
+    }
+  }
+
+  dataImages(image){
+    this.model.image = image;
+}
+
   cancelar(){
     this.router.navigate([this.router.url.split('/')[1] + "/"]);
   }
-
 }

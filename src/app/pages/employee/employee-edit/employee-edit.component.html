@@ -78,7 +78,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-5" *ngIf="!isEdit">
+                <div class="col-lg-5">
                     <div class="label-style">
                         <label class="pull-right label-title">
                             Senha
@@ -86,7 +86,7 @@
                     </div>
     
                     <div class="">
-                        <input class="input-style" mask="000.000.000-00" [(ngModel)]='model.password' name="cpf" type="password">
+                        <input class="input-style" [(ngModel)]='model.passwordHash' name="cpf" type="password">
                     </div>
                 </div>
                 

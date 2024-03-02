@@ -20,8 +20,7 @@ export class FreightComponent {
   id = 0;
 
   
-  constructor(private router: Router, private api: ApiService, private ui: UiService, 
-        private activatedRoute: ActivatedRoute, private uploadService: UploadService, private location: Location){
+  constructor(private router: Router, private api: ApiService, private ui: UiService){
 
   }
 
@@ -41,7 +40,6 @@ export class FreightComponent {
   }
 
   newCity(){
-    console.log("asdasdasd")
     this.model.cities.push({
       cep: ''
     })  
@@ -54,11 +52,11 @@ export class FreightComponent {
         this.ui.unblock();
         if(data.sucess){
           this.ui.sucess('', 'Frete cadastrado')
-          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
+          this.router.navigate([this.router.url.split('/')[0] + "/"]);
         }
         else{
           this.ui.error('', data.message)
-          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
+          this.router.navigate([this.router.url.split('/')[0] + "/"]);
         }
       })
     }
@@ -68,11 +66,11 @@ export class FreightComponent {
         this.ui.unblock();
         if(data.sucess){
           this.ui.sucess('', 'Frete atualizado')
-          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
+          this.router.navigate([this.router.url.split('/')[0] + "/"]);
         }
         else{
           this.ui.error('', data.message)
-          this.router.navigate([this.router.url.split('/')[0] + "/home"]);
+          this.router.navigate([this.router.url.split('/')[0] + "/"]);
         }
       })
     }

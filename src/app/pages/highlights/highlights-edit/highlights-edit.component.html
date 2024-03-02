@@ -1,0 +1,60 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Informações da categoria
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form class="example-form">
+
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Nome
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.name' name="descricao" type="text">
+                    </div>
+                </div>
+
+                <div >
+                    <mat-checkbox class="" color="primary" labelPosition="before" name="checkbox"
+                        [(ngModel)]="model.inactive">Inativa</mat-checkbox>
+                </div>
+                
+            </div>
+
+            <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" style="margin-left: 20px">
+                <button mat-button mat-raised-button style="background-color: var(--primary); color: var(--text-body);"
+                    (click)="imagem.click()">
+                    Selecione a imagem
+                </button>
+                <input type="file" #imagem name="files" (change)="fileImage($event)" style="display: none;" />
+            </div>
+    
+            <div *ngIf="model.image" style="margin-left: 8px;" class="imageList">
+                <img [src]="model.image">
+            
+            </div>
+    
+
+        </form>
+
+    </mat-expansion-panel>
+
+    
+
+    <section class="section-save">
+        <div class="example-button-row">
+          <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+          <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+        </div>
+    </section>
+
+
+
+</mat-accordion>

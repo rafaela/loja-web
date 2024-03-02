@@ -1,0 +1,127 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0">
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Lista Vendas
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        
+
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
+            <mat-form-field floatLabel="always"   fxFlex="1 1 auto" appearance="outline">
+                <mat-label>Nome</mat-label>
+                <input type="text" matInput
+                        placeholder="Informe o nome" [(ngModel)]="data.data.name">
+            </mat-form-field>
+
+        </div>
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" >
+            <mat-form-field>
+                <mat-label>Status pagamento</mat-label>
+                <select matNativeControl [(ngModel)]="data.data.epaymentStatus">
+                  <option value=1>Pendente</option>
+                  <option value=2>Pago</option>
+                  <option value=3>Cancelado</option>
+                </select>
+              </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Status de entrega</mat-label>
+                <select matNativeControl [(ngModel)]="data.data.edeliveryStatus">
+                  <option value=1>Pendente</option>
+                  <option value=2>Pedido aprovado</option>
+                  <option value=3>Pedido sendo separado</option>
+                  <option value=4>Saiu para a entrega</option>
+                  <option value=5>Entregue</option>
+                  <option value=6>Devolvido</option>
+                </select>
+              </mat-form-field>
+        </div>
+
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px" class="flex"  >
+            <div class="btn-filter">
+                <button mat-flat-button class="botao-salvar btn-search" (click)="pesquisar()">Pesquisar</button>
+                <button mat-flat-button class="botao-cancelar btn-search" style="margin-left: 0px;" (click)="limpar()">Limpar</button>
+            </div>
+            
+        </div>
+        
+
+    </mat-expansion-panel>
+</mat-accordion>
+
+<div class="mat-elevation-z8" style="margin-right: 20px; margin-left: 20px;">
+    <div class="mat-elevation-z4 " >
+
+      <table #myTable mat-table [dataSource]="saleList">
+
+        <ng-container matColumnDef="Ações">
+          <th mat-header-cell *matHeaderCellDef>Ações</th>
+          <td mat-cell *matCellDef="let element" >
+              <a routerLink="/vendas/{{element.id}}" routerLinkActive="selected">
+                <mat-icon>
+                  <span class="material-symbols-outlined btn-edit">edit</span>
+                </mat-icon>
+              </a>
+              
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Valor">
+          <th mat-header-cell *matHeaderCellDef> Valor </th>
+          <td mat-cell *matCellDef="let element" >
+                {{element.valorTotal}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Nome">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let element" >
+                  {{element.name}}
+            </td>
+          </ng-container>
+
+        <ng-container matColumnDef="Data Venda">
+          <th mat-header-cell *matHeaderCellDef> Data Venda </th>
+          <td mat-cell *matCellDef="let element" >
+                {{element.dateSale}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Forma pagamento">
+          <th mat-header-cell *matHeaderCellDef> Forma pagamento </th>
+          <td mat-cell *matCellDef="let element" >
+                {{element.paymentMethod}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Status Pagamento">
+          <th mat-header-cell *matHeaderCellDef> Status Pagamento </th>
+          <td mat-cell *matCellDef="let element" >
+                {{element.paymentStatus}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Status Entrega">
+          <th mat-header-cell *matHeaderCellDef> Status Entrega </th>
+          <td mat-cell *matCellDef="let element" >
+                {{element.deliveryStatus}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Data Entrega">
+          <th mat-header-cell *matHeaderCellDef>Data Entrega</th>
+          <td mat-cell *matCellDef="let element" style="min-width: 40px; text-align: left;">
+              {{ element.dateDelivery }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="_columns"></tr>
+        <tr mat-row *matRowDef="let row; columns: _columns" (click)="rowSelected(row)"></tr>
+
+     </table>
+  
+      <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+          showFirstLastButtons aria-label="Quantidade de itens" (page)="getPaginatorData($event)">
+      </mat-paginator>
+</div>
+  

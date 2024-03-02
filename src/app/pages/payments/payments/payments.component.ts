@@ -1,40 +1,36 @@
-import { Component, ChangeDetectorRef, Input, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
-import { MatTable } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { DialogDeleteComponent } from 'src/app/components/dialog-delete/dialog-delete.component';
 import { ApiService } from 'src/app/services/api.service';
 import { UiService } from 'src/app/services/ui.service';
 
 @Component({
-  selector: 'app-employee',
-  templateUrl: './employee.component.html',
-  styleUrls: ['./employee.component.scss']
+  selector: 'app-payments',
+  templateUrl: './payments.component.html',
+  styleUrls: ['./payments.component.scss']
 })
-export class EmployeeComponent {
-  @Input() filter: any = {}
-  @ViewChild(MatTable) myTable!: MatTable<any>;
-
-  employeesList: any = [];
+export class PaymentsComponent {
+  paymentsList: any = [];
   name;
-  _columns: string[] = ['Ações', 'Nome', 'Telefone', 'CPF', 'Email', 'Aniversário', 'Inativo'];
+  _columns: string[] = ['Ações', 'Nome', 'Tipo', 'Parcelas', 'Juros', 'Desconto', 'Inativo'];
   total;
   data: any = {
     data: {
-      name: '',
+      name: null,
       incativc: false
     },
     skip: 0,
     take: 20,
   };
-
   pageSize = 20;
   @ViewChild(MatPaginator) paginator = MatPaginator;
 
   ngAfterViewInit() {
-    this.employeesList.paginator = this.paginator;
+    this.paymentsList.paginator = this.paginator;
   }
+
 
   constructor(private cdr: ChangeDetectorRef, private api: ApiService, private ui: UiService, 
         private router: Router, public dialog: MatDialog){
@@ -44,33 +40,54 @@ export class EmployeeComponent {
   ngOnInit() {
     
     this.buscaDados();
-    
-    /*this.dataSource = new MatTableDataSource (ELEMENT_DATA);*/
     this.cdr.detectChanges();
   }
 
   buscaDados(){
     this.ui.block();
+
     this.data.skip = 0;
     this.data.take = this.pageSize;
 
-    this.api.getEmployees(this.data).subscribe(data => {
-      this.employeesList = data.data;
-      this.formataDados(this.employeesList)
+    this.api.getPayments(this.data).subscribe(data => {
+      this.paymentsList = data.data;
+      this.total = data.total;
+      this.formataDados(this.paymentsList)
       this.ui.unblock();
     })
-    
   }
 
-  formataDados(employeesList){
-    employeesList.forEach(element => {
-     
+  formataDados(paymentsList){
+    paymentsList.forEach(element => {
       if(element.inactive){
         element.inactive = 'Sim'
       }
       else{
         element.inactive = 'Não'
       }
+      if(element.fees){
+        element.fees = element.fees + '%';
+      }
+
+      if(element.discount){
+        element.discount = element.discount + '%'
+      }
+      if(element.methods == 1){
+        element.methods = 'Crédito à vista'
+      }
+      else if(element.methods == 2){
+        element.methods = 'Débito'
+      }
+      else if(element.methods == 3){
+        element.methods = 'Boleto'
+      }
+      else if(element.methods == 4){
+        element.methods = 'Pix'
+      }
+      else if(element.methods == 5){
+        element.methods = 'Crédito parcelado'
+      }
+
     })
   }
   
@@ -84,9 +101,9 @@ export class EmployeeComponent {
 
     dialogRef.afterClosed().subscribe(data =>{
       if(data){
-        this.api.deleteEmployee(id).subscribe(data => {
+        this.api.deletePayment(id).subscribe(data => {
           if(data.sucess){
-            this.ui.sucess('', 'Funcionário removido')
+            this.ui.sucess('', 'Forma de pagamento removido')
             this.buscaDados();
           }
           else
@@ -96,9 +113,8 @@ export class EmployeeComponent {
     });
 
   }
-
+  
   rowSelected(row){
-    
   }
 
   inserir(){
@@ -111,11 +127,11 @@ export class EmployeeComponent {
 
   pesquisar(){
     this.ui.block();
-    this.api.getEmployees(this.data).subscribe(data => {
-      this.employeesList = data.data;
+    this.api.getPayments(this.data).subscribe(data => {
+      this.paymentsList = data.data;
       this.total = data.total;
 
-      this.formataDados(this.employeesList)
+      this.formataDados(this.paymentsList)
       this.ui.unblock();
     })
   }

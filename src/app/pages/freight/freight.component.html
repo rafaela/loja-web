@@ -72,6 +72,19 @@
                         <input class="input-style" mask="00000-000" [(ngModel)]='city.cep' name="descricao" type="text">
                     </div>
                 </div>
+
+                <div class="col-lg-4">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Valor
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                        prefix="R$ " type="text" [dropSpecialCharacters]="true" [(ngModel)]='city.value' name="valueKm" type="text">
+                    </div>
+                </div>
                 <button mat-icon-button (click)="model.cities.splice(indexC, 1)" >
                     <mat-icon title="Remover cidade" style="color: var(--primary)">delete</mat-icon>
                 </button>    

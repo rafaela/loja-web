@@ -1,0 +1,106 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title >
+                Informações da Forma de Pagamento
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <form class="example-form">
+
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Nome
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.name' name="descricao" type="text">
+                    </div>
+                </div>
+
+                <div >
+                    <mat-checkbox class="" color="primary" labelPosition="before" name="checkbox"
+                        [(ngModel)]="model.inactive">Inativa</mat-checkbox>
+                </div>
+                
+            </div>
+
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+
+                <div class="col-lg-3">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Forma de pagamento
+                        </label>
+                    </div>
+                    <select class="input-style" [(ngModel)]="model.methods" name="method">
+                        <option  [value]=1>Crédito à vista</option>
+                        <option  [value]=2>Débito</option>
+                        <option  [value]=3>Boleto</option>
+                        <option  [value]=4>Pix</option>
+                        <option  [value]=5>Crédito parcelado</option>
+                    </select>
+    
+                </div>
+
+                <div *ngIf="model.methods == 5 " class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Quantidade de parcelas
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.quantityInstallments' name="quatidade" type="number">
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div *ngIf="model.methods == 5 " class="col-lg-3">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Juros em porcentagem
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.fees' name="juros" type="text">
+                    </div>
+                </div>
+
+                <div *ngIf="model.methods == 3 || model.methods == 4 " class="col-lg-3">
+                    <div  class="label-style">
+                        <label class="pull-right label-title">
+                            Desconto em porcentagem
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='model.discount' name="discount" type="text">
+                    </div>
+                </div>
+            
+            </div>
+    
+
+        </form>
+
+    </mat-expansion-panel>
+
+    
+
+    <section class="section-save">
+        <div class="example-button-row">
+          <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+          <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+        </div>
+    </section>
+
+
+
+</mat-accordion>

@@ -6,15 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
-import { HeaderComponent } from './pages/header/header.component';
 import { PagesModule } from './pages/pages.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
-import { NO_ERRORS_SCHEMA } from '@angular/compiler';
 import { ApiService } from './services/api.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-import { BlockUI, BlockUIComponent, BlockUIModule } from 'ng-block-ui';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ToastrModule, } from 'ngx-toastr';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DialogDeleteComponent } from './components/dialog-delete/dialog-delete.component';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -22,7 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { NumberFormatPipe } from './pipes/number-format.pipe';
 import { PhonePipe } from './pipes/phone.pipe';
 import { AuthGuard } from './guard/auth.guard';
-
+import { LoadingComponent } from './components/loading/loading.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingInterceptor } from './core/interceptor/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -30,6 +28,7 @@ import { AuthGuard } from './guard/auth.guard';
     DialogDeleteComponent,
     NumberFormatPipe,
     PhonePipe,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,14 +50,22 @@ import { AuthGuard } from './guard/auth.guard';
     MatButtonModule,
     NgxMaskDirective, 
     NgxMaskPipe,
-    BlockUIModule
+    MatProgressSpinnerModule
+    
+    
   ],
   providers: [
     ApiService,
     AuthGuard,
-    provideNgxMask()
+    provideNgxMask(),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    },
+    
 
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

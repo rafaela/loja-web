@@ -21,12 +21,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { ProductsFilterComponent } from './products/products-filter/products-filter.component';
 import { CategoriesComponent } from './categories/categories/categories.component';
-import { CategoriesFilterComponent } from './categories/categories-filter/categories-filter.component';
 import { CategoriesEditComponent } from './categories/categories-edit/categories-edit.component';
 import { EmployeeComponent } from './employee/employee/employee.component';
-import { EmployeeFilterComponent } from './employee/employee-filter/employee-filter.component';
 import { EmployeeEditComponent } from './employee/employee-edit/employee-edit.component';
 import { LoginComponent } from './login/login.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -36,6 +33,12 @@ import { FreightComponent } from './freight/freight.component';
 import { NgxMaskDirective, NgxMaskPipe } from 'ngx-mask';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { PaymentsComponent } from './payments/payments/payments.component';
+import { SalesComponent } from './sales/sales/sales.component';
+import { HighlightsComponent } from './highlights/highlights/highlights.component';
+import { HighlightsEditComponent } from './highlights/highlights-edit/highlights-edit.component';
+import { PaymentsEditComponent } from './payments/payments-edit/payments-edit.component';
+import { SalesEditComponent } from './sales/sales-edit/sales-edit.component';
 
 
 @NgModule({
@@ -44,18 +47,21 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     IndexComponent,
     ProductsEditComponent,
     ProductsComponent,
-    ProductsFilterComponent,
     CategoriesComponent,
-    CategoriesFilterComponent,
     CategoriesEditComponent,
     EmployeeComponent,
-    EmployeeFilterComponent,
     EmployeeEditComponent,
     LoginComponent,
     AuthenticationComponent,
     CreateAccountComponent,
     HeaderComponent,
     FreightComponent,
+    PaymentsComponent,
+    SalesComponent,
+    HighlightsComponent,
+    HighlightsEditComponent,
+    PaymentsEditComponent,
+    SalesEditComponent,
   ],
   imports: [
     CommonModule,
@@ -79,7 +85,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     NgxMaskDirective,
     NgxMaskPipe,
     MatNativeDateModule,
-    MatDatepickerModule
+    MatDatepickerModule,
    
   ],
   schemas: [
@@ -90,12 +96,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     IndexComponent,
     ProductsEditComponent,
     ProductsComponent,
-    ProductsFilterComponent,
     CategoriesComponent,
-    CategoriesFilterComponent,
     CategoriesEditComponent,
     EmployeeComponent,
-    EmployeeFilterComponent,
     EmployeeEditComponent,
     LoginComponent,
     AuthenticationComponent,

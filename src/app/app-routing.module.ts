@@ -12,6 +12,12 @@ import { CategoriesEditComponent } from './pages/categories/categories-edit/cate
 import { EmployeeComponent } from './pages/employee/employee/employee.component';
 import { EmployeeEditComponent } from './pages/employee/employee-edit/employee-edit.component';
 import { FreightComponent } from './pages/freight/freight.component';
+import { HighlightsComponent } from './pages/highlights/highlights/highlights.component';
+import { SalesComponent } from './pages/sales/sales/sales.component';
+import { PaymentsComponent } from './pages/payments/payments/payments.component';
+import { HighlightsEditComponent } from './pages/highlights/highlights-edit/highlights-edit.component';
+import { SalesEditComponent } from './pages/sales/sales-edit/sales-edit.component';
+import { PaymentsEditComponent } from './pages/payments/payments-edit/payments-edit.component';
 
 const routes: Routes = [
   // lazy loaded dashboard module
@@ -23,7 +29,14 @@ const routes: Routes = [
     { path: 'categorias/:id', component: CategoriesEditComponent },
     { path: 'funcionarios', component: EmployeeComponent },
     { path: 'funcionarios/:id', component: EmployeeEditComponent },
-    { path: 'frete', component: FreightComponent }],
+    { path: 'imagensdestaque', component: HighlightsComponent },
+    { path: 'imagensdestaque/:id', component: HighlightsEditComponent },
+    { path: 'vendas', component: SalesComponent },
+    { path: 'vendas/:id', component: SalesEditComponent },
+    { path: 'pagamentos', component: PaymentsComponent },
+    { path: 'pagamentos/:id', component: PaymentsEditComponent },
+    { path: 'frete', component: FreightComponent },
+    ],
     canActivate: [AuthGuard]
   },
 

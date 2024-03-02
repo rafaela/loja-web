@@ -26,20 +26,9 @@ interface Food {
 })
 export class ProductsEditComponent implements OnInit{
   caminho
-
-
   public model: any = {
-    photos: [{
-      id: null,
-      productId: null,
-      urlImage: null,
-      inactive: false
-    }],
-    subcategoriesProducts: [{
-      id: null,
-      subcategoryId: null,
-      productId: null,
-    }]
+    photos: [],
+    subcategoriesProducts: []
   }
   public subcategoriesproduct: any = [];
   public categoriesList;
@@ -54,6 +43,17 @@ export class ProductsEditComponent implements OnInit{
   amountFormControl = new FormControl('', [Validators.required]);
 
   matcher = new MyErrorStateMatcher();
+  data;
+  dataCategory: any = {
+    data: {
+      name: '',
+      inactive: false,
+      FeaturedProduct: false,
+
+    },
+    skip: 0,
+    take: 20,
+  };
   
   constructor(private router: Router, private api: ApiService, private ui: UiService, 
         private activatedRoute: ActivatedRoute, private uploadService: UploadService){
@@ -62,7 +62,7 @@ export class ProductsEditComponent implements OnInit{
 
   ngOnInit(){
     this.ui.block();
-    this.api.getCategories().subscribe(data => {
+    this.api.getCategories({}).subscribe(data => {
       this.ui.unblock();
       this.categoriesList = data.data
     })
@@ -77,7 +77,6 @@ export class ProductsEditComponent implements OnInit{
       this.api.getProductByID(this.id).subscribe(data => {
         this.ui.unblock();
         this.model = data.data
-        console.log(this.model)
         this.buscaSubcategorias(this.model.categoryID)
 
         for(let i = 0; i < this.model.subcategoriesProducts.length; i++){
@@ -146,14 +145,11 @@ export class ProductsEditComponent implements OnInit{
 
 
   buscaSubcategorias(category){
-    console.log(category)
     this.ui.block();
     this.api.getSubcategoriesByID(category).subscribe( data => {
       this.ui.unblock();
       if(data.sucess){
         this.subcategories = data.data;
-
-        console.log(this.subcategories)
       }
       else{
         this.ui.error('', data.message)
@@ -164,7 +160,6 @@ export class ProductsEditComponent implements OnInit{
 
   salvar(){
     this.tratandoSubcategorias();
-    console.log(this.model)
     if(this.id == 0){
       this.ui.block();
       this.api.createProduct(this.model).subscribe(data => {

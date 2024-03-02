@@ -1,0 +1,156 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Informações da compra
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+            <div class="col-lg-5">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Identificação do pedido
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" [(ngModel)]='model.name' name="descricao" type="text">
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Valor
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                        prefix="R$ " type="text" [dropSpecialCharacters]="true" [(ngModel)]='model.valorTotal'
+                        name="descricao" type="text" maxlength="200">
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+            
+            <div class="col-lg-3">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Forma de pagamento
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" [(ngModel)]='model.paymentMethod' name="descricao" type="text">
+                </div>
+            </div>
+            
+            <div class="col-lg-3">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Status de pagamento
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" [(ngModel)]='model.paymentStatus' name="descricao" type="text">
+                </div>
+            </div>
+            
+            <div class="col-lg-3">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Status de entrega
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" [(ngModel)]='model.deliveryStatus' name="descricao" type="text">
+                </div>
+            </div>
+
+            
+        </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Itens do pedido
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div  style="margin-left: 15px;" *ngFor="let product of model.products;" class="row row-filter listaPedidos" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+            <div class="col-lg-3">
+                <img [src]="product.photos[0].urlImage" class="image">
+            </div>
+            <div class="col-lg-4">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Nome
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" [(ngModel)]='product.name' name="descricao" type="text">
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Quantidade
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" [(ngModel)]='product.amount' name="descricao" type="text">
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Valor unitário
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" mask="separator.2" [thousandSeparator]="'.'" [decimalMarker]="','"
+                        prefix="R$ " type="text" [dropSpecialCharacters]="true" [(ngModel)]='product.value'
+                        name="descricao" type="text" maxlength="200">
+                </div>
+            </div>
+        </div>
+
+        
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Ações
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">
+            <button *ngIf="model.paymentStatus == 'Pendente'" mat-flat-button class="botao-salvar acoes" (click)="confirmarPagamento()">Confirmar pagamento</button>
+        </div>
+
+        <div style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">
+            
+            <button mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido {{ textoBotao }}</button>
+        </div>
+
+    </mat-expansion-panel>
+
+    <section class="section-save">
+        <div class="example-button-row">
+            <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Voltar</button>
+        </div>
+    </section>
+</mat-accordion>

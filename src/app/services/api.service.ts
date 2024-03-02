@@ -24,23 +24,20 @@ export class ApiService {
   async login(login){
     this.result = await this.http.post(`${this.apiUrl}/login`, login).toPromise();
     if(this.result && this.result.sucess){
-      window.localStorage.setItem('token', this.result.token);
+      window.sessionStorage .setItem('token', this.result.token);
       return true;
     }
     return false;
   }
 
   logout(){
-    window.localStorage.clear();
+    window.sessionStorage.clear();
     this.router.navigate(['login']);
   }
 
   //CRUD DE CATEGORIAS
-  /*getCategoriesNameInactive(category) : Observable<any>{
-    return this.http.get(this.apiUrl + '/buscas',category);
-  }*/
-  getCategories() : Observable<any>{
-    return this.http.get(this.apiUrl + '/categorias');
+  getCategories(data) : Observable<any>{
+    return this.http.post(this.apiUrl + '/categorias', data);
   }
 
   createCategory(category) :  Observable<any>{
@@ -59,8 +56,8 @@ export class ApiService {
     return this.http.get(this.apiUrl + '/categorias/'+ id, id);
   }
  //CRUD DE PRODUTOS
-  getProducts() : Observable<any>{
-    return this.http.get(this.apiUrl + '/produtos');
+  getProducts(data) : Observable<any>{
+    return this.http.post(this.apiUrl + '/produtos', data);
   }
 
   createProduct(product) :  Observable<any>{
@@ -86,8 +83,8 @@ export class ApiService {
 
   ///CRUD EMPLOYEE
 
-  getEmployees() : Observable<any>{
-    return this.http.get(this.apiUrl + '/funcionarios');
+  getEmployees(data) : Observable<any>{
+    return this.http.post(this.apiUrl + '/funcionarios', data);
   }
 
   createEmployee(employee) :  Observable<any>{
@@ -123,9 +120,65 @@ export class ApiService {
 
  //Subcategorias 
  getSubcategoriesByID(id) :  Observable<any>{
-  console.log(id)
-  return this.http.get(this.apiUrl + '/subcategorias/'+ id, id);
-}
+    console.log(id)
+    return this.http.get(this.apiUrl + '/subcategorias/'+ id, id);
+  }
 
+  //CRUD DE Imagens Destaque
+  getHighlights(data) : Observable<any>{
+    return this.http.post(this.apiUrl + '/imagensdestaque', data);
+  }
+
+  createHighlight(category) :  Observable<any>{
+    return this.http.post(this.apiUrl + '/imagensdestaque/0', category);
+  }
+
+  updateHighlights(id, category) :  Observable<any>{
+    return this.http.put(this.apiUrl + '/imagensdestaque/'+ id , category);
+  }
+
+  deleteHighlights(id) :  Observable<any>{
+    return this.http.delete(this.apiUrl + '/imagensdestaque/' + id, id);
+  }
+
+  getHighlightsByID(id) :  Observable<any>{
+    return this.http.get(this.apiUrl + '/imagensdestaque/'+ id, id);
+  }
+
+
+   //CRUD DE Pagamentos
+   getPayments(data) : Observable<any>{
+    return this.http.post(this.apiUrl + '/pagamentos', data);
+  }
+
+  createPayment(payment) :  Observable<any>{
+    return this.http.post(this.apiUrl + '/pagamentos/0', payment);
+  }
+
+  updatePayment(id, payment) :  Observable<any>{
+    return this.http.put(this.apiUrl + '/pagamentos/'+ id , payment);
+  }
+
+  deletePayment(id) :  Observable<any>{
+    return this.http.delete(this.apiUrl + '/pagamentos/' + id, id);
+  }
+
+  getPaymentByID(id) :  Observable<any>{
+    return this.http.get(this.apiUrl + '/pagamentos/'+ id, id);
+  }
+
+  //Vendas
+
+  getSales(data) : Observable<any>{
+    return this.http.post(this.apiUrl + '/vendas', data);
+  }
+
+  getSaleId(data) : Observable<any>{
+    return this.http.get(this.apiUrl + '/vendas/' + data, data);
+  }
+
+  changeStatusDelivery(data) : Observable<any>{
+    return this.http.get(this.apiUrl + '/entrega/' + data, data);
+  }
   
 }

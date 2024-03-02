@@ -22,7 +22,7 @@
                 </div>
 
                 <div >
-                    <mat-checkbox class="" color="primary" labelPosition="before"
+                    <mat-checkbox class="" color="primary" labelPosition="before" name="checkbox"
                         [(ngModel)]="model.inactive">Inativa</mat-checkbox>
                 </div>
                 
@@ -53,8 +53,8 @@
                         <input class="input-style" [(ngModel)]='category.name' name="descricao" type="text">
                     </div>
                 </div>
-                <button mat-icon-button (click)="model.subcategories.splice(indexC, 1)" >
-                    <mat-icon title="Remover subcategoria" style="color: var(--primary)">delete</mat-icon>
+                <button style="cursor: pointer;" mat-icon-button (click)="model.subcategories.splice(indexC, 1)" >
+                    <mat-icon title="Remover subcategoria" style="color: var(--primary); ">delete</mat-icon>
                 </button>    
                 
             </div>

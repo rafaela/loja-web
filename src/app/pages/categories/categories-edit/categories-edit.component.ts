@@ -1,22 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroupDirective,
-  NgForm,
-  Validators,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
-import {NgIf} from '@angular/common';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { UiService } from 'src/app/services/ui.service';
 import { MyErrorStateMatcher } from '../../MyErrorStateMatcher';
-
-
 
 
 @Component({

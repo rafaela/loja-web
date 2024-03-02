@@ -1,12 +1,14 @@
+import { take } from 'rxjs/operators';
 import { UiService } from './../../../services/ui.service';
 import { ApiService } from '../../../services/api.service';
 import { Products } from './../../../models/Products';
 import { ChangeDetectorRef, Component, Input, OnInit, ViewChild } from '@angular/core';
-import {MatPaginator, MatPaginatorIntl, MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorIntl, } from '@angular/material/paginator';
 import {MatTable, MatTableDataSource, MatTableModule} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogDeleteComponent } from 'src/app/components/dialog-delete/dialog-delete.component';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-categories',
@@ -22,13 +24,25 @@ export class CategoriesComponent  implements OnInit{
   categoriesList: any = [];
   name;
   _columns: string[] = ['Ações', 'Nome', 'Inativo'];
+  total;
+  data: any = {
+    data: {
+      name: '',
+      incativc: false
+    },
+    skip: 0,
+    take: 20,
+  };
+  pageSize = 20;
+  @ViewChild(MatPaginator) paginator = MatPaginator;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator = new MatPaginator(new MatPaginatorIntl(), ChangeDetectorRef.prototype);
+  ngAfterViewInit() {
+    this.categoriesList.paginator = this.paginator;
+  }
 
-  
 
   constructor(private cdr: ChangeDetectorRef, private api: ApiService, private ui: UiService, 
-        private router: Router, public dialog: MatDialog){
+        private router: Router, public dialog: MatDialog, private loading: LoadingService){
 
   }
 
@@ -41,19 +55,13 @@ export class CategoriesComponent  implements OnInit{
   }
 
   buscaDados(){
-    this.ui.block();
-    /*if(this.filter){
-      this.api.getCategoriesNameInactive(this.filter).subscribe(data => {
-        this.categoriesList = data.data;
-        this.formataDados(this.categoriesList)
-        this.ui.unblock();
-      })
-    }
-    else{*/
-    this.api.getCategories().subscribe(data => {
+    this.data.skip = 0;
+    this.data.take = this.pageSize;
+
+    this.api.getCategories(this.data).subscribe(data => {
       this.categoriesList = data.data;
+      this.total = data.total;
       this.formataDados(this.categoriesList)
-      this.ui.unblock();
     })
     //}
     
@@ -101,14 +109,32 @@ export class CategoriesComponent  implements OnInit{
     });
 
   }
-
-
-
-  ngAfterViewInit() {
-    this.categoriesList.paginator = this.paginator;
+  
+  rowSelected(row){
   }
 
-  rowSelected(row){
-    console.log(row)
+  inserir(){
+    this.router.navigate([this.router.url + '/0']);
+  }
+
+  limpar(){
+      this.data.data = {};
+  }
+
+  pesquisar(){
+    this.ui.block();
+    this.api.getCategories(this.data).subscribe(data => {
+      this.categoriesList = data.data;
+      this.total = data.total;
+
+      this.formataDados(this.categoriesList)
+      this.ui.unblock();
+    })
+  }
+
+  getPaginatorData(event){
+    this.data.skip = event.pageIndex * event.pageSize;
+    this.data.take = event.pageSize;
+    this.pesquisar();
   }
 }
