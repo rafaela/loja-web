@@ -79,6 +79,124 @@
     <mat-expansion-panel class="mat-elevation-z0" hideToggle >
         <mat-expansion-panel-header>
             <mat-panel-title>
+                Endereço de entrega
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div  style="margin-left: 15px;" class="row row-filter listaPedidos" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-2">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            CEP
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.cep' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Rua
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.street' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-3">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Número
+                        </label>
+                    </div>
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.number' name="descricao" type="text">
+                    </div>
+                    
+                </div>
+    
+            </div>
+            
+
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-4">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Complemento
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.complement' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Referência
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.reference' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Bairro
+                        </label>
+                    </div>
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.neighborhood' name="descricao" type="text">
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Cidade
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.city' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-2">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Estado
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.address.state' name="descricao" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
                 Itens do pedido
             </mat-panel-title>
         </mat-expansion-panel-header>
@@ -138,7 +256,8 @@
         </mat-expansion-panel-header>
 
         <div style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">
-            <button *ngIf="model.paymentStatus == 'Pendente'" mat-flat-button class="botao-salvar acoes" (click)="confirmarPagamento()">Confirmar pagamento</button>
+            <button *ngIf="model.paymentStatus == 'Pendente' || model.paymentStatus == 'Pago'" mat-flat-button 
+                class="botao-salvar acoes" (click)="confirmarPagamento()">{{ botaoPagamento }}</button>
         </div>
 
         <div style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">

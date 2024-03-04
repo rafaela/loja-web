@@ -17,6 +17,16 @@ export class SalesEditComponent implements OnInit{
     paymentMethod: '',
     paymentStatus: '',
     deliveryStatus: '',
+    address: {
+      cep: '',
+      city: '',
+      complement: '',
+      neighborhood: '',
+      number: '',
+      reference: '',
+      state: '',
+      street: '',
+    },
     products: [{
       name: '',
       value: 0,
@@ -28,6 +38,7 @@ export class SalesEditComponent implements OnInit{
   }
   id;
   textoBotao = '';
+  botaoPagamento = 'Confirmar pagamento'
 
   nomeFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
@@ -42,9 +53,7 @@ export class SalesEditComponent implements OnInit{
     })
 
     if(this.id != 0){
-      this.ui.block();
       this.api.getSaleId(this.id).subscribe(data => {
-        this.ui.unblock();
         this.model = data.data;
         this.textoBotao = this.model.deliveryStatus;
       })
@@ -88,15 +97,27 @@ export class SalesEditComponent implements OnInit{
   }
 
   confirmarPagamento(){
+    this.api.changeStatusPayment(this.id).subscribe(data => {
+      if(data.sucess){
+        this.botaoPagamento = 'Cancelar pagamento'
+      }
+    })
 
+    this.api.getSaleId(this.id).subscribe(data => {
+      this.model = data.data;
+      this.textoBotao = this.model.deliveryStatus;
+    })
+    
   }
 
   statusEntrega(){
-    this.ui.block();
       this.api.changeStatusDelivery(this.id).subscribe(data => {
-        this.ui.unblock();
         this.textoBotao = data.data.deliveryStatus
-        console.log(this.model)
+      })
+
+      this.api.getSaleId(this.id).subscribe(data => {
+        this.model = data.data;
+        this.textoBotao = this.model.deliveryStatus;
       })
   }
 

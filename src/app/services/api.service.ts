@@ -181,4 +181,7 @@ export class ApiService {
     return this.http.get(this.apiUrl + '/entrega/' + data, data);
   }
   
+  changeStatusPayment(data) : Observable<any>{
+    return this.http.get(this.apiUrl + '/pagamento/' + data, data);
+  }
 }
