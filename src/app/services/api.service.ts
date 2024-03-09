@@ -1,9 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment.development';
-import { Products } from '../models/Products';
-import { Response } from '../models/Response';
+import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -19,7 +17,7 @@ export class ApiService {
   constructor(private http: HttpClient, private router: Router) {
     var url = window.location;
     this.apiUrl = `${environment.ApiUrl}`
-   }
+  }
 
   async login(login){
     this.result = await this.http.post(`${this.apiUrl}/login`, login).toPromise();
