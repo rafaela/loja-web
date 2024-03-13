@@ -22,9 +22,9 @@ export class CategoriesComponent  implements OnInit{
   @ViewChild(MatTable) myTable!: MatTable<any>;
 
   categoriesList: any = [];
-  name;
+  name = '';
   _columns: string[] = ['Ações', 'Nome', 'Inativo'];
-  total;
+  total = 0;
   data: any = {
     data: {
       name: '',

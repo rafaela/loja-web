@@ -20,7 +20,7 @@ export class ProductsComponent  implements OnInit{
 
 
   productsList: any = [];
-  name;
+  name = '';
   _columns: string[] = ['Ações', 'Nome', 'Valor', 'Categoria', 'ProdutoDestaque', 'Inativo'];
 
   data: any = {
@@ -34,7 +34,7 @@ export class ProductsComponent  implements OnInit{
     take: 20,
   };
 
-  total;
+  total = 0;
   pageSize = 20;
   @ViewChild(MatPaginator) paginator = MatPaginator;
 

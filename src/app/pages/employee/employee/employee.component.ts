@@ -17,9 +17,9 @@ export class EmployeeComponent {
   @ViewChild(MatTable) myTable!: MatTable<any>;
 
   employeesList: any = [];
-  name;
+  name = '';
   _columns: string[] = ['Ações', 'Nome', 'Telefone', 'CPF', 'Email', 'Aniversário', 'Inativo'];
-  total;
+  total = 0 ;
   data: any = {
     data: {
       name: '',

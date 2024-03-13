@@ -13,9 +13,9 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class PaymentsComponent {
   paymentsList: any = [];
-  name;
+  name = '';
   _columns: string[] = ['Ações', 'Nome', 'Tipo', 'Parcelas', 'Juros', 'Desconto', 'Inativo'];
-  total;
+  total = 0;
   data: any = {
     data: {
       name: null,

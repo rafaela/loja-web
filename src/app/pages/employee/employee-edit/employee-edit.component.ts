@@ -14,7 +14,7 @@ export class EmployeeEditComponent {
 
   panelOpenState = false;
   isEdit: boolean = false
-  id;
+  id = 0;
 
   public model: any = {
     Login: {}

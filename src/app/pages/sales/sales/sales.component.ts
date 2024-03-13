@@ -13,9 +13,9 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class SalesComponent {
   saleList: any = [];
-  name;
+  name = '';
   _columns: string[] = ['Ações', 'Nome', 'Valor', 'Data Venda', 'Forma pagamento', 'Status Pagamento', 'Status Entrega', 'Data Entrega'];
-  total;
+  total = 0;
   data: any = {
     data: {
       name: null,

@@ -12,7 +12,7 @@ import { UiService } from 'src/app/services/ui.service';
 })
 export class HighlightsEditComponent {
   panelOpenState = false;
-  id;
+  id = 0;
 
   public model: any = {}
 

@@ -36,7 +36,7 @@ export class SalesEditComponent implements OnInit{
       }]
     }]
   }
-  id;
+  id = 0;
   textoBotao = '';
   botaoPagamento = 'Confirmar pagamento'
 

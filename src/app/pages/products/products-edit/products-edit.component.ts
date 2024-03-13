@@ -25,15 +25,15 @@ interface Food {
   styleUrls: ['./products-edit.component.scss']
 })
 export class ProductsEditComponent implements OnInit{
-  caminho
+  caminho =  '';
   public model: any = {
     photos: [],
     subcategoriesProducts: []
   }
   public subcategoriesproduct: any = [];
-  public categoriesList;
-  public subcategories
-  id;
+  public categoriesList : any = [];
+  public subcategories: any = [];
+  id = 0;
   images: any = [];
 
   isEdit = false;
@@ -43,7 +43,7 @@ export class ProductsEditComponent implements OnInit{
   amountFormControl = new FormControl('', [Validators.required]);
 
   matcher = new MyErrorStateMatcher();
-  data;
+  data = [];
   dataCategory: any = {
     data: {
       name: '',

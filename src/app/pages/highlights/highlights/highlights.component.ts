@@ -14,9 +14,9 @@ import { UiService } from 'src/app/services/ui.service';
 export class HighlightsComponent {
 
   highlightsList: any = [];
-  name;
+  name = '';
   _columns: string[] = ['Ações', 'Nome', 'Inativo'];
-  total;
+  total = 0;
   data: any = {
     data: {
       name: null,

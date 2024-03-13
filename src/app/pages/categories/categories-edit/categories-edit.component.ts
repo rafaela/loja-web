@@ -14,7 +14,7 @@ import { MyErrorStateMatcher } from '../../MyErrorStateMatcher';
 })
 export class CategoriesEditComponent implements OnInit{
   panelOpenState = false;
-  id;
+  id: any = 0;
 
   public model: any = {
     subcategories: []
