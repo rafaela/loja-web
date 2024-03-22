@@ -82,6 +82,17 @@ export class CategoriesEditComponent implements OnInit{
     
   }
 
+  removerSub(subcategory){
+    this.api.deleteSubcategoria(subcategory).subscribe(data => {
+      if(data.sucess){
+        this.ui.sucess('', 'Subcategoria Removida')
+      }
+      else{
+        this.ui.error('', data.message)
+      }
+    })
+  }
+
   cancelar(){
     this.router.navigate([this.router.url.split('/')[1] + "/"]);
   }

@@ -261,8 +261,9 @@
         </div>
 
         <div style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">
-            
-            <button mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido {{ textoBotao }}</button>
+            <p *ngIf="textoBotao !== 'Entregue' && textoBotao !== 'Devolvido' ">Status de entrega</p>
+            <button *ngIf="textoBotao !== 'Entregue' && textoBotao !== 'Devolvido' " mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido {{ textoBotao }}</button>
+            <button *ngIf="textoBotao === 'Entregue'" mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido {{ textoBotao }}</button>
         </div>
 
     </mat-expansion-panel>

@@ -13,6 +13,7 @@ import {Location} from '@angular/common';
 })
 export class FreightComponent {
   public model: any = {
+    valuePriceFreeShipping: 0,
     cities: []
   }
   public categoriesList;
@@ -46,6 +47,10 @@ export class FreightComponent {
 }
 
   salvar(){
+    
+    if(this.model.valuePriceFreeShipping == ""){
+      this.model.valuePriceFreeShipping = 0;
+    }
     if(this.id == 0){
       this.ui.block();
       this.api.createFreigth(this.model).subscribe(data => {

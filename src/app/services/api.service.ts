@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment.development';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -49,6 +49,12 @@ export class ApiService {
   deleteCategory(id) :  Observable<any>{
     return this.http.delete(this.apiUrl + '/categorias/' + id, id);
   }
+
+  deleteSubcategoria(subcategoria) :  Observable<any>{
+    console.log(subcategoria)
+    return this.http.delete(this.apiUrl + '/subcategorias/' + subcategoria.id, subcategoria.id);
+  }
+
 
   getCategoryByID(id) :  Observable<any>{
     return this.http.get(this.apiUrl + '/categorias/'+ id, id);

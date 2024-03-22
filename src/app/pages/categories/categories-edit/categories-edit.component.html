@@ -53,7 +53,7 @@
                         <input class="input-style" [(ngModel)]='category.name' name="descricao" type="text">
                     </div>
                 </div>
-                <button style="cursor: pointer;" mat-icon-button (click)="model.subcategories.splice(indexC, 1)" >
+                <button style="cursor: pointer;" mat-icon-button (click)="model.subcategories.splice(indexC, 1);  removerSub(category)" >
                     <mat-icon title="Remover subcategoria" style="color: var(--primary); ">delete</mat-icon>
                 </button>    
                 

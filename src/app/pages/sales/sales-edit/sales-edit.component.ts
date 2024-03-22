@@ -111,6 +111,7 @@ export class SalesEditComponent implements OnInit{
   }
 
   statusEntrega(){
+    setTimeout(()=>{
       this.api.changeStatusDelivery(this.id).subscribe(data => {
         this.textoBotao = data.data.deliveryStatus
       })
@@ -119,6 +120,8 @@ export class SalesEditComponent implements OnInit{
         this.model = data.data;
         this.textoBotao = this.model.deliveryStatus;
       })
+    }, 500);
+      
   }
 
 }
