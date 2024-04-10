@@ -256,14 +256,20 @@
         </mat-expansion-panel-header>
 
         <div style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">
-            <button *ngIf="model.paymentStatus == 'Pendente' || model.paymentStatus == 'Pago'" mat-flat-button 
-                class="botao-salvar acoes" (click)="confirmarPagamento()">{{ botaoPagamento }}</button>
+            <button *ngIf="model.paymentStatus === 'Pendente'" mat-flat-button 
+                class="botao-salvar acoes" (click)="confirmarPagamento()">Confirmar pagamento</button>
+            
+            <button *ngIf="model.paymentStatus === 'Pago'" mat-flat-button 
+                class="botao-salvar acoes" (click)="confirmarPagamento()">Cancelar pagamento</button>
         </div>
 
-        <div style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">
-            <p *ngIf="textoBotao !== 'Entregue' && textoBotao !== 'Devolvido' ">Status de entrega</p>
-            <button *ngIf="textoBotao !== 'Entregue' && textoBotao !== 'Devolvido' " mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido {{ textoBotao }}</button>
-            <button *ngIf="textoBotao === 'Entregue'" mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido {{ textoBotao }}</button>
+        <div *ngIf="model.paymentStatus == 'Pago'" style="margin-left: 20px; margin-bottom: 10px;" class="example-button-row">
+            <p  *ngIf="model.deliveryStatus !== 'Devolvido'">Mudar Status de Entrega</p>
+            <button *ngIf="model.deliveryStatus === 'Pendente' " mat-flat-button class="botao-salvar" (click)="statusEntrega()">Separar Pedido</button>
+            <button *ngIf="model.deliveryStatus === 'Sendo separado'" mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido saiu para entrega</button>
+            <button *ngIf="model.deliveryStatus === 'Saiu para a entrega' " mat-flat-button class="botao-salvar" (click)="statusEntrega()">Pedido entregue</button>
+            <button *ngIf="model.deliveryStatus === 'Entregue'" mat-flat-button class="botao-salvar" (click)="statusEntrega()">Devolver pedido</button>
+
         </div>
 
     </mat-expansion-panel>

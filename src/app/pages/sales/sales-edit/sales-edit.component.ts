@@ -37,9 +37,6 @@ export class SalesEditComponent implements OnInit{
     }]
   }
   id = 0;
-  textoBotao = '';
-  botaoPagamento = 'Confirmar pagamento'
-
   nomeFormControl = new FormControl('', [Validators.required]);
   matcher = new MyErrorStateMatcher();
   
@@ -55,7 +52,6 @@ export class SalesEditComponent implements OnInit{
     if(this.id != 0){
       this.api.getSaleId(this.id).subscribe(data => {
         this.model = data.data;
-        this.textoBotao = this.model.deliveryStatus;
       })
     }
 
@@ -97,28 +93,42 @@ export class SalesEditComponent implements OnInit{
   }
 
   confirmarPagamento(){
-    this.api.changeStatusPayment(this.id).subscribe(data => {
-      if(data.sucess){
-        this.botaoPagamento = 'Cancelar pagamento'
-      }
-    })
-
-    this.api.getSaleId(this.id).subscribe(data => {
-      this.model = data.data;
-      this.textoBotao = this.model.deliveryStatus;
-    })
+    if(this.model.paymentStatus ===  'Pago' ){
+      this.api.cancelPayment(this.id).subscribe(data => {
+        if(data.sucess){
+          this.ui.sucess('', 'Pagamento cancelado')
+        }
+      })
+      
+    }
+    else{
+      this.api.changeStatusPayment(this.id).subscribe(data => {
+        if(data.sucess){
+          this.ui.sucess('', 'Pedido Pago')
+        }
+      })
+    }
+    setTimeout(()=>{
+      this.api.getSaleId(this.id).subscribe(data => {
+        this.model = data.data;
+      })
+    }, 500);
+    
     
   }
 
-  statusEntrega(){
-    setTimeout(()=>{
-      this.api.changeStatusDelivery(this.id).subscribe(data => {
-        this.textoBotao = data.data.deliveryStatus
-      })
+  
 
+  statusEntrega(){
+
+    this.api.changeStatusDelivery(this.id).subscribe(data => {
+      if(data.sucess){
+        this.ui.sucess('', 'Pedido atualizado')
+      }
+    })
+    setTimeout(()=>{
       this.api.getSaleId(this.id).subscribe(data => {
         this.model = data.data;
-        this.textoBotao = this.model.deliveryStatus;
       })
     }, 500);
       
