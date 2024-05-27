@@ -105,7 +105,9 @@
               "@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "/dist/loja-web/polyfills.4b41033653ebe8bd.js"
+            ]
           }
         }
       }
