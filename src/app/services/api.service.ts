@@ -14,13 +14,19 @@ export class ApiService {
 
   result: any;
 
+  private header = {
+    headers: { 'Content-Type': 'application/json' },
+    withCredentials: true
+  }
+
+
   constructor(private http: HttpClient, private router: Router) {
     var url = window.location;
     this.apiUrl = `${environment.ApiUrl}`
   }
 
   async login(login){
-    this.result = await this.http.post(`${this.apiUrl}/login`, login).toPromise();
+    this.result = await this.http.post(`${this.apiUrl}/login`, login, this.header).toPromise();
     if(this.result && this.result.sucess){
       window.sessionStorage .setItem('token', this.result.token);
       return true;
