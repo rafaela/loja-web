@@ -21,17 +21,20 @@ export class LoginComponent implements OnInit{
     
   }
 
-  async onSubmit(){
+  async entrar(){
     try{
-      const result = await this.api.login(this.login);
+      if(this.login.email.includes("@")){
+        const result = await this.api.login(this.login);
 
-      if(result){
-        this.router.navigate(['']);
-      }else{
-        this.ui.error('E-mail e/ou senha incorretos', 'Login');
+        if(result){
+          this.router.navigate(['']);
+        }else{
+          this.ui.error('E-mail e/ou senha incorretos', 'Login');
+        }
       }
-
-      
+      else{
+        this.ui.error('Formato de email inválido', 'Login');
+      }
     }catch(error){
       this.ui.error(error, 'Login')
     }
