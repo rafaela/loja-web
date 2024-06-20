@@ -46,9 +46,6 @@ export class PaymentsComponent {
   buscaDados(){
     this.ui.block();
 
-    this.data.skip = 0;
-    this.data.take = this.pageSize;
-
     this.api.getPayments(this.data).subscribe(data => {
       this.paymentsList = data.data;
       this.total = data.total;

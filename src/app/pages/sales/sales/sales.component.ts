@@ -48,10 +48,6 @@ export class SalesComponent {
   buscaDados(){
     this.ui.block();
 
-    this.data.skip = 0;
-    this.data.take = this.pageSize;
-
-
     this.data.data.epaymentStatus = parseInt(this.data.data.epaymentStatus)
     this.data.data.edeliveryStatus = parseInt(this.data.data.edeliveryStatus)
     this.api.getSales(this.data).subscribe(data => {

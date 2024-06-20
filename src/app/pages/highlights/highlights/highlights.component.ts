@@ -47,8 +47,6 @@ export class HighlightsComponent {
   buscaDados(){
     this.ui.block();
 
-    this.data.skip = 0;
-    this.data.take = this.pageSize;
 
     this.api.getHighlights(this.data).subscribe(data => {
       this.highlightsList = data.data;

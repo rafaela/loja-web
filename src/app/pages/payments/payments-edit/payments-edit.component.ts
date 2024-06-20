@@ -38,34 +38,44 @@ export class PaymentsEditComponent {
 
   }
 
-  salvar(){
-    this.model.methods = Number(this.model.methods);
-    if(this.id == 0){
-      this.ui.block();
-      
-      this.api.createPayment(this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Forma de pagamento cadastrada')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
+  validar(){
+    if(this.model.name == '' || this.model.name == null){
+      this.ui.error('', 'Informe o nome');
+      return false;
     }
-    else{
-      this.ui.block();
-      this.api.updatePayment(this.id, this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Forma de pagamento atualizada')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
+    return true;
+  }
+
+  salvar(){
+    if(this.validar()){
+      this.model.methods = Number(this.model.methods);
+      if(this.id == 0){
+        this.ui.block();
+        
+        this.api.createPayment(this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Forma de pagamento cadastrada')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
+      else{
+        this.ui.block();
+        this.api.updatePayment(this.id, this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Forma de pagamento atualizada')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
     }
     
   }

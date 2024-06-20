@@ -21,7 +21,7 @@ export class ProductsComponent  implements OnInit{
 
   productsList: any = [];
   name = '';
-  _columns: string[] = ['Ações', 'Nome', 'Valor', 'Categoria', 'ProdutoDestaque', 'Inativo'];
+  _columns: string[] = ['Ações', 'Nome', 'Valor', 'Categoria', 'Quantidade Estoque', 'ProdutoDestaque', 'Inativo'];
 
   data: any = {
     data: {
@@ -56,8 +56,6 @@ export class ProductsComponent  implements OnInit{
 
   async buscaDados(){
     this.ui.block();
-    this.data.skip = 0;
-    this.data.take = this.pageSize;
     this.api.getProducts(this.data).subscribe(data => {
       
       this.productsList = data.data;

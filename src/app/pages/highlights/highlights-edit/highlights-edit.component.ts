@@ -38,35 +38,45 @@ export class HighlightsEditComponent {
 
   }
 
+
+  validar(){
+    if(this.model.name == '' || this.model.name == null){
+      this.ui.error('', 'Informe o nome');
+      return false;
+    }
+    return true;
+  }
+
   salvar(){
-    if(this.id == 0){
-      this.ui.block();
-      
-      this.api.createHighlight(this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Imagem cadastrada')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
+    if(this.validar()){
+      if(this.id == 0){
+        this.ui.block();
+        
+        this.api.createHighlight(this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Imagem cadastrada')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
+      else{
+        this.ui.block();
+        this.api.updateHighlights(this.id, this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Imagem atualizada')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
     }
-    else{
-      this.ui.block();
-      this.api.updateHighlights(this.id, this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Imagem atualizada')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
-    }
-    
   }
 
   fileImage(event: any): void {

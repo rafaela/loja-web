@@ -51,34 +51,45 @@ export class CategoriesEditComponent implements OnInit{
       })  
   }
 
+  validar(){
+    if(this.model.name == '' || this.model.name == null){
+      this.ui.error('', 'Informe o nome');
+      return false;
+    }
+    return true;
+  }
+
   salvar(){
-    if(this.id == 0){
-      this.ui.block();
-      
-      this.api.createCategory(this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Categoria cadastrada')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
+    if(this.validar()){
+      if(this.id == 0){
+        this.ui.block();
+        
+        this.api.createCategory(this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Categoria cadastrada')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
+      else{
+        this.ui.block();
+        this.api.updateCategory(this.id, this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Categoria atualizada')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
     }
-    else{
-      this.ui.block();
-      this.api.updateCategory(this.id, this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Categoria atualizada')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
-    }
+    
     
   }
 

@@ -27,12 +27,22 @@ export class SalesEditComponent implements OnInit{
       state: '',
       street: '',
     },
+    client: {
+      name: '',
+      phone: '',
+      cpf: '',
+      email: '',
+      birthDate: ''
+    },
     products: [{
       name: '',
       value: 0,
       amount: 0,
       photos: [{
         urlImage: ''
+      }],
+      colors: [{
+        name: ''
       }]
     }]
   }
@@ -52,6 +62,11 @@ export class SalesEditComponent implements OnInit{
     if(this.id != 0){
       this.api.getSaleId(this.id).subscribe(data => {
         this.model = data.data;
+        console.log(this.model)
+        this.model.products.forEach((element: any) => {
+          if(!element.colors)
+            element.colors = [];
+        })
       })
     }
 
@@ -97,6 +112,11 @@ export class SalesEditComponent implements OnInit{
       this.api.cancelPayment(this.id).subscribe(data => {
         if(data.sucess){
           this.ui.sucess('', 'Pagamento cancelado')
+          setTimeout(()=>{
+            this.api.getSaleId(this.id).subscribe(data => {
+              this.model = data.data;
+            })
+          }, 500);
         }
       })
       
@@ -105,14 +125,15 @@ export class SalesEditComponent implements OnInit{
       this.api.changeStatusPayment(this.id).subscribe(data => {
         if(data.sucess){
           this.ui.sucess('', 'Pedido Pago')
+          setTimeout(()=>{
+            this.api.getSaleId(this.id).subscribe(data => {
+              this.model = data.data;
+            })
+          }, 500);
         }
       })
     }
-    setTimeout(()=>{
-      this.api.getSaleId(this.id).subscribe(data => {
-        this.model = data.data;
-      })
-    }, 500);
+    
     
     
   }
@@ -124,13 +145,15 @@ export class SalesEditComponent implements OnInit{
     this.api.changeStatusDelivery(this.id).subscribe(data => {
       if(data.sucess){
         this.ui.sucess('', 'Pedido atualizado')
+
+        setTimeout(()=>{
+          this.api.getSaleId(this.id).subscribe(data => {
+            this.model = data.data;
+          })
+        }, 500);
       }
     })
-    setTimeout(()=>{
-      this.api.getSaleId(this.id).subscribe(data => {
-        this.model = data.data;
-      })
-    }, 500);
+    
       
   }
 

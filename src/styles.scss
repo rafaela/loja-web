@@ -34,12 +34,12 @@ $loja-web-theme: mat.define-light-theme((
 @include mat.all-component-themes($loja-web-theme);
 
 :root {
-  --primary: #ec0000;
-  --secundary: #ec0000;
+  --primary: #f10303;  //#ec0000;
+  --secundary: #f10303;
   --body: #FAFAFA;
   --text-menu: #4b4b4b;
   --text-body: #fff;
-  --title: #ec0000;
+  --title: #f10303;
   //--title: #F44336;
   --line: #BDBDBD;
 }

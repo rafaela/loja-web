@@ -79,6 +79,69 @@
     <mat-expansion-panel class="mat-elevation-z0" hideToggle >
         <mat-expansion-panel-header>
             <mat-panel-title>
+                Dados do Cliente
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div  style="margin-left: 15px;" class="row row-filter listaPedidos" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Nome
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.client.name' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-3">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Telefone
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" mask="(00)00000-0000"[(ngModel)]='model.client.phone' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-3">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            CPF
+                        </label>
+                    </div>
+                    <div class="">
+                        <input disabled class="input-style" mask="000.000.000-00" [(ngModel)]='model.client.cpf' name="descricao" type="text">
+                    </div>
+                </div>
+            </div>
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-4">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            E-mail
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='model.client.email' name="descricao" type="text">
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel class="mat-elevation-z0" hideToggle >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
                 Endereço de entrega
             </mat-panel-title>
         </mat-expansion-panel-header>
@@ -214,6 +277,18 @@
 
                 <div class="">
                     <input disabled class="input-style" [(ngModel)]='product.name' name="descricao" type="text">
+                </div>
+            </div>
+
+            <div *ngIf="product.colors.length > 0" class="col-lg-4">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Cor
+                    </label>
+                </div>
+
+                <div class="">
+                    <input disabled class="input-style" [(ngModel)]='product.colors[0].name' name="descricao" type="text">
                 </div>
             </div>
 

@@ -40,45 +40,77 @@ export class EmployeeEditComponent {
 
     if(this.id != 0){
       this.isEdit = true;
-      this.ui.block();
       this.api.getEMployeeByID(this.id).subscribe(data => {
-        this.ui.unblock();
-        this.model = data.data
+        this.model = data.data;
+        this.model.passwordHash = '';
+        this.model.login = {};
       })
     }
+
+    
 
   }
 
-  salvar(){
-    this.model.Login.email = this.model.email;
-    this.model.Login.passwordHash = this.model.passwordHash;
+  validar(){
+    if(this.model.name == '' || this.model.name == null){
+      this.ui.error('', 'Informe o nome');
+      return false;
+    }
 
-    if(this.id == 0){
-      this.ui.block();
-      this.api.createEmployee(this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Funcionário cadastrado')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
+    if(this.model.phone == '' || this.model.phone == null){
+      this.ui.error('', 'Informe o phone');
+      return false;
     }
-    else{
-      this.ui.block();
-      this.api.updateEmployee(this.id, this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Funcionário atualizado')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
+    if(this.model.cpf == '' || this.model.cpf == null){
+      this.ui.error('', 'Informe o cpf');
+      return false;
     }
+
+    if(this.model.email == '' || this.model.email == null){
+      this.ui.error('', 'Informe o email');
+      return false;
+    }
+
+    if(this.model.passwordHash == '' || this.model.passwordHash == null){
+      this.ui.error('', 'Informe a senha');
+      return false;
+    }
+    return true;
+  }
+
+  salvar(){
+    if(this.validar()){
+      this.model.login.email = this.model.email;
+      this.model.login.passwordHash = this.model.passwordHash;
+
+      if(this.id == 0){
+        this.ui.block();
+        this.api.createEmployee(this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Funcionário cadastrado')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
+      else{
+        this.ui.block();
+        this.api.updateEmployee(this.id, this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Funcionário atualizado')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
+    }
+    
     
   }
 

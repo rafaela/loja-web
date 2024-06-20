@@ -77,6 +77,9 @@
             <div >
                 <mat-checkbox class="" color="primary" labelPosition="before"
                     [(ngModel)]="model.featuredProduct">Produto em destaque</mat-checkbox>
+
+                <mat-checkbox class="" color="primary" labelPosition="before"
+                    [(ngModel)]="model.inactive">Inativo</mat-checkbox>
             </div>
 
         </div>
@@ -100,6 +103,43 @@
     <mat-expansion-panel>
 
         <mat-expansion-panel-header>
+            <mat-panel-title >
+                Informações das cores
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div fxLayout="row" fxLayoutAlign="start center"  style="margin-left: 20px;">
+            <div  class="subcategorias" *ngFor="let color of model.colors; let indexC = index" style="margin-left: 20px;">
+                <div class="col-lg-5">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Nome
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input class="input-style" [(ngModel)]='color.name' name="descricao" type="text">
+                    </div>
+                </div>
+                <button style="cursor: pointer;" mat-icon-button (click)="model.colors.splice(indexC, 1);  removerCor(color)" >
+                    <mat-icon title="Remover cor" style="color: var(--primary); ">delete</mat-icon>
+                </button>    
+                
+            </div>
+        </div>
+        
+
+        <div fxLayout="row" fxLayoutAlign="start center" style="margin-left: 10px;">
+            <button mat-icon-button (click)="newColor()" >
+                <mat-icon style="color: var(--primary)">add_circle</mat-icon>
+            </button>
+            <span style="opacity: .54; cursor: pointer; " (click)="newColor();">Adicionar Cor</span>
+        </div>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel>
+
+        <mat-expansion-panel-header>
             <mat-panel-title>
                 Galeria de fotos
             </mat-panel-title>
@@ -113,20 +153,26 @@
             <input type="file" #imagem multiple name="files" (change)="fileImage($event)" style="display: none;" />
         </div>
 
-        <div style="margin-left: 8px;" *ngFor="let image of model.photos; let indexC = index" class="imageList">
-            <img [src]="image.urlImage">
-            <button mat-icon-button (click)="model.photos.splice(indexC, 1); removerImagem(image)">
-                <mat-icon title="Remover imagem" style="color: var(--primary);">delete</mat-icon>
-            </button>
+        <div fxLayout="row wrap" fxLayoutAlign="start start" fxLayoutGap="16px">
+            <div style="margin-left: 8px;"  class="imageList" *ngFor="let image of model.photos; let indexC = index">
+                <img [src]="image.urlImage">
+                <button mat-icon-button (click)="model.photos.splice(indexC, 1); removerImagem(image)">
+                    <mat-icon title="Remover imagem" style="color: var(--primary);">delete</mat-icon>
+                </button>
+            </div>
         </div>
 
-        <section class="section-save">
-            <div class="example-button-row">
-                <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
-                <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
-            </div>
-        </section>
+        
     </mat-expansion-panel>
 
+    
+
+
+    <section class="section-save">
+        <div class="example-button-row">
+            <button mat-flat-button class="botao-salvar" (click)="salvar()">Salvar</button>
+            <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Cancelar</button>
+        </div>
+    </section>
 
 </mat-accordion>

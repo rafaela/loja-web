@@ -72,6 +72,12 @@
               {{ element.category.name }}</td>
         </ng-container>
 
+        <ng-container matColumnDef="Quantidade Estoque">
+          <th mat-header-cell *matHeaderCellDef>Quantidade Estoque</th>
+          <td mat-cell *matCellDef="let element" style="min-width: 40px; text-align: left;">
+              {{ element.amount }}</td>
+        </ng-container>
+
         <ng-container matColumnDef="ProdutoDestaque">
           <th mat-header-cell *matHeaderCellDef>Produto destaque</th>
           <td mat-cell *matCellDef="let element" style="min-width: 40px; text-align: left;">
@@ -89,7 +95,7 @@
 
      </table>
   
-      <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 20]"
+      <mat-paginator [length]="total" [pageSize]="pageSize" [pageSizeOptions]="[20, 50, 100]"
           showFirstLastButtons aria-label="Quantidade de itens" (page)="getPaginatorData($event)">
       </mat-paginator>
   </div>

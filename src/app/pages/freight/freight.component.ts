@@ -84,4 +84,16 @@ export class FreightComponent {
   cancelar(){
     this.router.navigate([this.router.url.split('/')[0] + "/home"]);
   }
+
+  delete(city){
+    this.api.deleteCity(city).subscribe(data => {
+      if(data.sucess){
+        this.ui.sucess('', 'Cidade removida')
+      }
+      else{
+        this.ui.error('', data.message)
+      }
+    })
+    console.log(city)
+  }
 }

@@ -28,7 +28,8 @@ export class ProductsEditComponent implements OnInit{
   caminho =  '';
   public model: any = {
     photos: [],
-    subcategoriesProducts: []
+    subcategoriesProducts: [],
+    colors: []
   }
   public subcategoriesproduct: any = [];
   public categoriesList : any = [];
@@ -77,6 +78,10 @@ export class ProductsEditComponent implements OnInit{
       this.api.getProductByID(this.id).subscribe(data => {
         this.ui.unblock();
         this.model = data.data
+        console.log(this.model)
+        if(this.model.colors == null){
+          this.model.colors = [];
+        }
         this.buscaSubcategorias(this.model.categoryID)
 
         for(let i = 0; i < this.model.subcategoriesProducts.length; i++){
@@ -95,6 +100,23 @@ export class ProductsEditComponent implements OnInit{
       this.ui.unblock();
       if(data.sucess){
         this.ui.sucess('', 'Imagem removida')
+      }
+      else{
+        this.ui.error('', data.message)
+      }
+    })
+  }
+
+  newColor(){
+    this.model.colors.push({
+      name: ''
+    })  
+  }
+
+  removerCor(color){
+    this.api.deleteColor(color).subscribe(data => {
+      if(data.sucess){
+        this.ui.sucess('', 'Cor Removida')
       }
       else{
         this.ui.error('', data.message)
@@ -125,7 +147,8 @@ export class ProductsEditComponent implements OnInit{
   }
 
   tratandoSubcategorias(){
-    if(this.subcategoriesproduct){
+    this.model.subcategoriesProducts = [];
+    if(this.subcategoriesproduct.length > 0){
       for(let i = 0; i < this.subcategoriesproduct.length; i++){
         this.model.subcategoriesProducts.push({
           id: null,
@@ -133,6 +156,9 @@ export class ProductsEditComponent implements OnInit{
           productId: this.id == 0 ? null : this.id,
         })
       }
+    }
+    else{
+      this.model.subcategoriesproduct = this.subcategoriesproduct;
     }
   }
 
@@ -145,6 +171,9 @@ export class ProductsEditComponent implements OnInit{
 
 
   buscaSubcategorias(category){
+    this.model.category = null;
+    this.subcategoriesproduct = []
+
     this.ui.block();
     this.api.getSubcategoriesByID(category).subscribe( data => {
       this.ui.unblock();
@@ -157,35 +186,66 @@ export class ProductsEditComponent implements OnInit{
     })
   }
 
+  validar(){
+    if(this.model.name == '' || this.model.name == null){
+      this.ui.error('', 'Informe o nome');
+      return false;
+    }
+
+    if(this.model.amount == '' || this.model.amount == null){
+      this.ui.error('', 'Informe a quantidade em estoque');
+      return false;
+    }
+    if(this.model.value == '' || this.model.value == null){
+      this.ui.error('', 'Informe o valor do produto');
+      return false;
+    }
+
+    if(this.model.categoryID == '' || this.model.categoryID == null){
+      this.ui.error('', 'Informe a categoria ');
+      return false;
+    }
+
+    if(this.model.photos.length == 0){
+      this.ui.error('', 'Informe pelo menos uma imagem do produto');
+      return false;
+    }
+    return true;
+  }
+
 
   salvar(){
-    this.tratandoSubcategorias();
-    if(this.id == 0){
-      this.ui.block();
-      this.api.createProduct(this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Produto cadastrado')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
+    console.log(this.model)
+    if(this.validar()){
+      this.tratandoSubcategorias();
+      if(this.id == 0){
+        this.ui.block();
+        this.api.createProduct(this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Produto cadastrado')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
+      else{
+        this.ui.block();
+        this.api.updateProduct(this.id, this.model).subscribe(data => {
+          this.ui.unblock();
+          if(data.sucess){
+            this.ui.sucess('', 'Produto atualizado')
+            this.router.navigate([this.router.url.split('/')[1] + "/"]);
+          }
+          else{
+            this.ui.error('', data.message)
+          }
+        })
+      }
     }
-    else{
-      this.ui.block();
-      this.api.updateProduct(this.id, this.model).subscribe(data => {
-        this.ui.unblock();
-        if(data.sucess){
-          this.ui.sucess('', 'Produto atualizado')
-          this.router.navigate([this.router.url.split('/')[1] + "/"]);
-        }
-        else{
-          this.ui.error('', data.message)
-        }
-      })
-    }
+    
   }
 
   cancelar(){

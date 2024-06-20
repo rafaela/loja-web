@@ -57,7 +57,6 @@ export class ApiService {
   }
 
   deleteSubcategoria(subcategoria) :  Observable<any>{
-    console.log(subcategoria)
     return this.http.delete(`${this.apiUrl}/subcategorias/` + subcategoria.id, subcategoria.id);
   }
 
@@ -197,5 +196,13 @@ export class ApiService {
 
   cancelPayment(data) : Observable<any>{
     return this.http.get(`${this.apiUrl}/cancelamento/` + data, data);
+  }
+
+  deleteCity(city) :  Observable<any>{
+    return this.http.delete(`${this.apiUrl}/removecidade/` + city.id, city.id);
+  }
+
+  deleteColor(color) :  Observable<any>{
+    return this.http.delete(`${this.apiUrl}/cor/` + color.id, color.id);
   }
 }

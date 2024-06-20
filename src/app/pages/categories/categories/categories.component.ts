@@ -55,8 +55,6 @@ export class CategoriesComponent  implements OnInit{
   }
 
   buscaDados(){
-    this.data.skip = 0;
-    this.data.take = this.pageSize;
 
     this.api.getCategories(this.data).subscribe(data => {
       this.categoriesList = data.data;
