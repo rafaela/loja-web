@@ -66,7 +66,7 @@ export class ApiService {
   }
  //CRUD DE PRODUTOS
   getProducts(data) : Observable<any>{
-    return this.http.post(`${this.apiUrl}/produtos`, data);
+    return this.http.post(`${this.apiUrl}/produtosadmin`, data);
   }
 
   createProduct(product) :  Observable<any>{
