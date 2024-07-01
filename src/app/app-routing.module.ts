@@ -18,6 +18,8 @@ import { PaymentsComponent } from './pages/payments/payments/payments.component'
 import { HighlightsEditComponent } from './pages/highlights/highlights-edit/highlights-edit.component';
 import { SalesEditComponent } from './pages/sales/sales-edit/sales-edit.component';
 import { PaymentsEditComponent } from './pages/payments/payments-edit/payments-edit.component';
+import { ClientsComponent } from './pages/clients/clients/clients.component';
+import { ClientsEditComponent } from './pages/clients/clients-edit/clients-edit.component';
 
 const routes: Routes = [
   // lazy loaded dashboard module
@@ -36,6 +38,8 @@ const routes: Routes = [
     { path: 'pagamentos', component: PaymentsComponent },
     { path: 'pagamentos/:id', component: PaymentsEditComponent },
     { path: 'frete', component: FreightComponent },
+    { path: 'clientes', component: ClientsComponent },
+    { path: 'clientes/:id', component: ClientsEditComponent },
     ],
     canActivate: [AuthGuard]
   },

@@ -1,0 +1,182 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel  >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Informações do cliente
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+            <div class="col-lg-5">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Nome
+                    </label>
+                </div>
+
+                <div class="">
+                    <input class="input-style" [(ngModel)]='model.name' name="name" type="text">
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        Telefone
+                    </label>
+                </div>
+
+                <div class="">
+                    <input class="input-style" mask="(00)00000-0000" [(ngModel)]='model.phone' name="phone" type="text">
+                </div>
+            </div>
+
+        </div>
+
+        <div style="margin-left: 8px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+            
+            <div class="col-lg-5">
+                <div class="label-style">
+                    <label class="pull-right label-title">
+                        CPF
+                    </label>
+                </div>
+
+                <div class="">
+                    <input class="input-style" mask="000.000.000-00" [(ngModel)]="model.cpf" name="cpf" type="text">
+                </div>
+            </div>
+            
+           
+        </div>
+
+    </mat-expansion-panel>
+
+    <mat-expansion-panel  >
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Endereços
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <div *ngFor="let add of model.address"  style="margin-left: 15px;" class="row row-filter listaPedidos" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-2">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            CEP
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.cep' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Rua
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.street' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-3">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Número
+                        </label>
+                    </div>
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.number' name="descricao" type="text">
+                    </div>
+                    
+                </div>
+    
+            </div>
+            
+
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-4">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Complemento
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.complement' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Referência
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.reference' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Bairro
+                        </label>
+                    </div>
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.neighborhood' name="descricao" type="text">
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div  style="margin-left: 15px;" class="row row-filter" fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="0%">
+                <div class="col-lg-6">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Cidade
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.city' name="descricao" type="text">
+                    </div>
+                </div>
+    
+                <div class="col-lg-2">
+                    <div class="label-style">
+                        <label class="pull-right label-title">
+                            Estado
+                        </label>
+                    </div>
+    
+                    <div class="">
+                        <input disabled class="input-style" [(ngModel)]='add.state' name="descricao" type="text">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            
+
+    </mat-expansion-panel>
+
+    
+
+ 
+
+    <section class="section-save">
+        <div class="example-button-row">
+            <button mat-flat-button class="botao-cancelar" (click)="cancelar()">Voltar</button>
+        </div>
+    </section>
+</mat-accordion>

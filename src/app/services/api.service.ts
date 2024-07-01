@@ -205,4 +205,19 @@ export class ApiService {
   deleteColor(color) :  Observable<any>{
     return this.http.delete(`${this.apiUrl}/cor/` + color.id, color.id);
   }
+
+
+  //CRUD DE CLIENTES
+  getClients(data) : Observable<any>{
+    return this.http.post(`${this.apiUrl}/clientes`, data);
+  }
+
+
+  getClientByID(id) :  Observable<any>{
+    return this.http.get(`${this.apiUrl}/clientes/`+ id, id);
+  }
+
+  getAddressClientByID(id) :  Observable<any>{
+    return this.http.get(`${this.apiUrl}/enderecoscliente/`+ id, id);
+  }
 }

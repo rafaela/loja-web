@@ -108,24 +108,54 @@
             </mat-panel-title>
         </mat-expansion-panel-header>
 
-        <div fxLayout="row" fxLayoutAlign="start center"  style="margin-left: 20px;">
-            <div  class="subcategorias" *ngFor="let color of model.colors; let indexC = index" style="margin-left: 20px;">
-                <div class="col-lg-5">
-                    <div class="label-style">
-                        <label class="pull-right label-title">
-                            Nome
-                        </label>
-                    </div>
+        <div fxLayout="row" fxLayoutAlign="start center"  style="margin-left: 20px;" >
+
+            <div *ngFor="let color of model.colors; let indexC = index">
+                <div  class="subcategorias"  style="margin-left: 20px;">
+                    <div class="col-lg-5">
+                        <div class="label-style">
+                            <label class="pull-right label-title">
+                                Nome
+                            </label>
+                        </div>
+        
+                        <div class="">
+                            <input class="input-style" [(ngModel)]='color.name' name="descricao" type="text">
+                        </div>
+                    </div>  
     
-                    <div class="">
-                        <input class="input-style" [(ngModel)]='color.name' name="descricao" type="text">
+    
+                    <div class="col-lg-5">
+                        <div class="label-style">
+                            <label class="pull-right label-title">
+                                Quantidade
+                            </label>
+                        </div>
+        
+                        <div class="">
+                            <input class="input-style" [(ngModel)]='color.amount' name="descricao" type="number">
+                        </div>
+                    </div>  
+                    <div  style="margin-left: 17px; margin-top: 5px;">
+                        <button mat-button mat-raised-button style="background-color: var(--primary); color: var(--text-body);"
+                            (click)="imagem.click()">
+                            Cor
+                        </button>
+                        <input type="file" #imagem name="files" (change)="fileImageColor($event, color)" style="display: none;" />
+        
+                        <div style="margin-left: 4px; margin-top: 5px;" >
+                            <img [src]="color.urlImage">
+                            <button mat-icon-button (click)="model.colors.splice(indexC, 1);  removerCor(color)">
+                                <mat-icon title="Remover cor" style="color: var(--primary);">delete</mat-icon>
+                            </button>
+                        </div>
+                        
                     </div>
                 </div>
-                <button style="cursor: pointer;" mat-icon-button (click)="model.colors.splice(indexC, 1);  removerCor(color)" >
-                    <mat-icon title="Remover cor" style="color: var(--primary); ">delete</mat-icon>
-                </button>    
-                
             </div>
+            
+            
+
         </div>
         
 

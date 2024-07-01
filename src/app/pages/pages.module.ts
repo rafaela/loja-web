@@ -39,6 +39,8 @@ import { HighlightsComponent } from './highlights/highlights/highlights.componen
 import { HighlightsEditComponent } from './highlights/highlights-edit/highlights-edit.component';
 import { PaymentsEditComponent } from './payments/payments-edit/payments-edit.component';
 import { SalesEditComponent } from './sales/sales-edit/sales-edit.component';
+import { ClientsComponent } from './clients/clients/clients.component';
+import { ClientsEditComponent } from './clients/clients-edit/clients-edit.component';
 
 
 @NgModule({
@@ -62,6 +64,8 @@ import { SalesEditComponent } from './sales/sales-edit/sales-edit.component';
     HighlightsEditComponent,
     PaymentsEditComponent,
     SalesEditComponent,
+    ClientsComponent,
+    ClientsEditComponent
   ],
   imports: [
     CommonModule,

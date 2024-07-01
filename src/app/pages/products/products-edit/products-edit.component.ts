@@ -146,6 +146,26 @@ export class ProductsEditComponent implements OnInit{
     }
   }
 
+
+  fileImageColor(event: any, color: any): void {
+    const selectFiles = event.srcElement.files;
+    if(selectFiles){
+      for(var i = 0, f; f = selectFiles[i]; i++){
+        if (f.type.match('image/')) {//verifica se os arquivos são imagens
+          var reader = new FileReader();
+          reader.onload = (e: any) => {
+            color.urlImage =  e.target.result;
+          }
+          reader.readAsDataURL(f);
+        }
+        else{
+          this.ui.error('Arquivo inválido', 'Selecione apenas imagens')
+          return
+        } 
+      }
+    }
+  }
+
   tratandoSubcategorias(){
     this.model.subcategoriesProducts = [];
     if(this.subcategoriesproduct.length > 0){
