@@ -211,11 +211,6 @@ export class ProductsEditComponent implements OnInit{
       this.ui.error('', 'Informe o nome');
       return false;
     }
-
-    if(this.model.amount == '' || this.model.amount == null){
-      this.ui.error('', 'Informe a quantidade em estoque');
-      return false;
-    }
     if(this.model.value == '' || this.model.value == null){
       this.ui.error('', 'Informe o valor do produto');
       return false;
