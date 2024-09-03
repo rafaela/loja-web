@@ -129,7 +129,6 @@ export class ApiService {
 
  //Subcategorias 
  getSubcategoriesByID(id) :  Observable<any>{
-    console.log(id)
     return this.http.get(`${this.apiUrl}/subcategorias/`+ id, id);
   }
 

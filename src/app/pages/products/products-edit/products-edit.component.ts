@@ -78,7 +78,6 @@ export class ProductsEditComponent implements OnInit{
       this.api.getProductByID(this.id).subscribe(data => {
         this.ui.unblock();
         this.model = data.data
-        console.log(this.model)
         if(this.model.colors == null){
           this.model.colors = [];
         }
@@ -167,19 +166,22 @@ export class ProductsEditComponent implements OnInit{
   }
 
   tratandoSubcategorias(){
-    this.model.subcategoriesProducts = [];
-    if(this.subcategoriesproduct.length > 0){
-      for(let i = 0; i < this.subcategoriesproduct.length; i++){
-        this.model.subcategoriesProducts.push({
-          id: null,
-          subcategoryId: this.subcategoriesproduct[i],
-          productId: this.id == 0 ? null : this.id,
-        })
+    if(this.model.subcategoriesProducts.length > 0){
+      this.model.subcategoriesProducts[0] = {
+        id: this.model.subcategoriesProducts[0].id,
+        subcategoryId: this.subcategoriesproduct[0],
+        productId: this.id == 0 ? null : this.id,
       }
     }
     else{
-      this.model.subcategoriesproduct = this.subcategoriesproduct;
+      this.model.subcategoriesProducts.push({
+        id: null,
+        subcategoryId: this.subcategoriesproduct[0],
+        productId: this.id == 0 ? null : this.id,
+      })
+
     }
+    
   }
 
   dataImages(image){
@@ -230,7 +232,6 @@ export class ProductsEditComponent implements OnInit{
 
 
   salvar(){
-    console.log(this.model)
     if(this.validar()){
       this.tratandoSubcategorias();
       if(this.id == 0){
